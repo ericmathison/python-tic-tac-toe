@@ -522,52 +522,8 @@ class Game:
             pygame.draw.line(self.screen, BLACK, [350,50], [350,650], 5)
             pygame.draw.line(self.screen, BLACK, [550,50], [550,650], 5)
 
-            if self.A1 == "X":
-                pygame.draw.line(self.screen, BLACK, [200,100], [300,200], 5)
-                pygame.draw.line(self.screen, BLACK, [300,100], [200,200], 5)
-            if self.A2 == "X":
-                pygame.draw.line(self.screen, BLACK, [400,100], [500,200], 5)
-                pygame.draw.line(self.screen, BLACK, [500,100], [400,200], 5)
-            if self.A3 == "X":
-                pygame.draw.line(self.screen, BLACK, [600,100], [700,200], 5)
-                pygame.draw.line(self.screen, BLACK, [700,100], [600,200], 5)
-            if self.B1 == "X":
-                pygame.draw.line(self.screen, BLACK, [200,300], [300,400], 5)
-                pygame.draw.line(self.screen, BLACK, [300,300], [200,400], 5)
-            if self.B2 == "X":
-                pygame.draw.line(self.screen, BLACK, [400,300], [500,400], 5)
-                pygame.draw.line(self.screen, BLACK, [500,300], [400,400], 5)
-            if self.B3 == "X":
-                pygame.draw.line(self.screen, BLACK, [600,300], [700,400], 5)
-                pygame.draw.line(self.screen, BLACK, [700,300], [600,400], 5)
-            if self.C1 == "X":
-                pygame.draw.line(self.screen, BLACK, [200,500], [300,600], 5)
-                pygame.draw.line(self.screen, BLACK, [300,500], [200,600], 5)
-            if self.C2 == "X":
-                pygame.draw.line(self.screen, BLACK, [400,500], [500,600], 5)
-                pygame.draw.line(self.screen, BLACK, [500,500], [400,600], 5)
-            if self.C3 == "X":
-                pygame.draw.line(self.screen, BLACK, [600,500], [700,600], 5)
-                pygame.draw.line(self.screen, BLACK, [700,500], [600,600], 5)
-
-            if self.A1 == "O":
-                pygame.draw.ellipse(self.screen,RED,[200,100,100,100],4)
-            if self.A2 == "O":
-                pygame.draw.ellipse(self.screen,RED,[400,100,100,100],4)
-            if self.A3 == "O":
-                pygame.draw.ellipse(self.screen,RED,[600,100,100,100],4)
-            if self.B1 == "O":
-                pygame.draw.ellipse(self.screen,RED,[200,300,100,100],4)
-            if self.B2 == "O":
-                pygame.draw.ellipse(self.screen,RED,[400,300,100,100],4)
-            if self.B3 == "O":
-                pygame.draw.ellipse(self.screen,RED,[600,300,100,100],4)
-            if self.C1 == "O":
-                pygame.draw.ellipse(self.screen,RED,[200,500,100,100],4)
-            if self.C2 == "O":
-                pygame.draw.ellipse(self.screen,RED,[400,500,100,100],4)
-            if self.C3 == "O":
-                pygame.draw.ellipse(self.screen,RED,[600,500,100,100],4)
+            self.draw_each_x()
+            self.draw_each_o()
 
             if self.status == "lost":
                 self.window = "lose"
@@ -579,6 +535,43 @@ class Game:
         pygame.display.flip()
 
         clock.tick(60)
+
+    def draw_each_x(self):
+        coordinates = {
+                "A1": [[200,100], [300,200], [300,100], [200,200]],
+                "A2": [[400,100], [500,200], [500,100], [400,200]],
+                "A3": [[600,100], [700,200], [700,100], [600,200]],
+                "B1": [[200,300], [300,400], [300,300], [200,400]],
+                "B2": [[400,300], [500,400], [500,300], [400,400]],
+                "B3": [[600,300], [700,400], [700,300], [600,400]],
+                "C1": [[200,500], [300,600], [300,500], [200,600]],
+                "C2": [[400,500], [500,600], [500,500], [400,600]],
+                "C3": [[600,500], [700,600], [700,500], [600,600]]
+            }
+
+        positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+
+        for p in positions:
+            if getattr(self, p) == "X":
+                pygame.draw.line(self.screen, BLACK, coordinates[p][0], coordinates[p][1], 5)
+                pygame.draw.line(self.screen, BLACK, coordinates[p][2], coordinates[p][3], 5)
+
+        if self.C3 == "X":
+            pygame.draw.line(self.screen, BLACK, [600,500], [700,600], 5)
+            pygame.draw.line(self.screen, BLACK, [700,500], [600,600], 5)
+
+    def draw_each_o(self):
+        coordinates = {"A1": [200,100,100,100], "A2": [400,100,100,100],
+                "A3": [600,100,100,100], "B1": [200,300,100,100],
+                "B2": [400,300,100,100], "B3": [600,300,100,100],
+                "C1": [200,500,100,100], "C2": [400,500,100,100],
+                "C3": [600,500,100,100]}
+
+        positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+
+        for p in positions:
+            if getattr(self, p) == "O":
+                pygame.draw.ellipse(self.screen, RED, coordinates[p], 4)
 
     def reset_clicks(self):
         self.clickx = 0
