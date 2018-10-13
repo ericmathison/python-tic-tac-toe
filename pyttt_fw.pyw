@@ -1,13 +1,5 @@
-"""
-NOTES:
--Add player's choice of symbol
-"""
-
-
 import pygame
 import random
-
-# Define universal colors
 
 BLACK = ( 0, 0, 0)
 WHITE = ( 255, 255, 255)
@@ -17,12 +9,9 @@ RED = ( 255, 0, 0)
 
 pygame.init()
 
-# Set the width and height of the screen [width, height]
 size = (900, 700)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Tic Tac Toe")
-
-#----Variables----
 
 done = False #Loop until the user clicks the close button.
 window = "main" #Window: menu, game, win, lose
@@ -50,11 +39,9 @@ C3 = ""
 
 
 
-#---Update Clock---
 clock = pygame.time.Clock()
 
 
-# -------- Main Program Loop -----------
 while not done:
     
 # --- Main event loop
@@ -694,7 +681,6 @@ while not done:
         screen.blit(quitgame, [365,435])
         pygame.draw.rect(screen,BLACK,[250,400,400,100],2)
         
-#Game window
     if window == "game":
         gamefont = pygame.font.Font(None, 48)
         game_text = gamefont.render("Player is: " + player,True,BLACK)
@@ -704,76 +690,55 @@ while not done:
 
 
         
-#Cross
         pygame.draw.line(screen, BLACK, [150,250], [750,250], 5)
         pygame.draw.line(screen, BLACK, [150,450], [750,450], 5)
         pygame.draw.line(screen, BLACK, [350,50], [350,650], 5)
         pygame.draw.line(screen, BLACK, [550,50], [550,650], 5)
     
-#Xs
-    #A1
         if A1 == "X":
             pygame.draw.line(screen, BLACK, [200,100], [300,200], 5)
             pygame.draw.line(screen, BLACK, [300,100], [200,200], 5)
-    #A2
         if A2 == "X":
             pygame.draw.line(screen, BLACK, [400,100], [500,200], 5)
             pygame.draw.line(screen, BLACK, [500,100], [400,200], 5)
-    #A3
         if A3 == "X":
             pygame.draw.line(screen, BLACK, [600,100], [700,200], 5)
             pygame.draw.line(screen, BLACK, [700,100], [600,200], 5)
-    #B1
         if B1 == "X":
             pygame.draw.line(screen, BLACK, [200,300], [300,400], 5)
             pygame.draw.line(screen, BLACK, [300,300], [200,400], 5)
-    #B2
         if B2 == "X":
             pygame.draw.line(screen, BLACK, [400,300], [500,400], 5)
             pygame.draw.line(screen, BLACK, [500,300], [400,400], 5)
-    #B3
         if B3 == "X":
             pygame.draw.line(screen, BLACK, [600,300], [700,400], 5)
             pygame.draw.line(screen, BLACK, [700,300], [600,400], 5)
-    #C1
         if C1 == "X":
             pygame.draw.line(screen, BLACK, [200,500], [300,600], 5)
             pygame.draw.line(screen, BLACK, [300,500], [200,600], 5)
-    #C2
         if C2 == "X":
             pygame.draw.line(screen, BLACK, [400,500], [500,600], 5)
             pygame.draw.line(screen, BLACK, [500,500], [400,600], 5)
-    #C3
         if C3 == "X":
             pygame.draw.line(screen, BLACK, [600,500], [700,600], 5)
             pygame.draw.line(screen, BLACK, [700,500], [600,600], 5)
  
-#Os
-    #A1
         if A1 == "O":
             pygame.draw.ellipse(screen,RED,[200,100,100,100],4)
-    #A2
         if A2 == "O":
             pygame.draw.ellipse(screen,RED,[400,100,100,100],4)
-    #A3
         if A3 == "O":
             pygame.draw.ellipse(screen,RED,[600,100,100,100],4)
-    #B1
         if B1 == "O":
             pygame.draw.ellipse(screen,RED,[200,300,100,100],4)
-    #B2
         if B2 == "O":
             pygame.draw.ellipse(screen,RED,[400,300,100,100],4)
-    #B3
         if B3 == "O":
             pygame.draw.ellipse(screen,RED,[600,300,100,100],4)
-    #C1
         if C1 == "O":
             pygame.draw.ellipse(screen,RED,[200,500,100,100],4)
-    #C2
         if C2 == "O":
             pygame.draw.ellipse(screen,RED,[400,500,100,100],4)
-    #C3
         if C3 == "O":
             pygame.draw.ellipse(screen,RED,[600,500,100,100],4)
     #To show last move
