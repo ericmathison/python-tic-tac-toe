@@ -82,26 +82,8 @@ class Game:
         if self.window == "win" or self.window == "lose" or self.window == "cats":
             self.process_post_game_menu()
 
-        #Get players choice
         if self.window == "game":
-            if (self.clickx > 150 and self.clickx < 350) and (self.clicky > 50 and self.clicky < 250):
-                self.playchoice = "A1"
-            if (self.clickx > 350 and self.clickx < 550) and (self.clicky > 50 and self.clicky < 250):
-                self.playchoice = "A2"
-            if (self.clickx > 550 and self.clickx < 750) and (self.clicky > 50 and self.clicky < 250):
-                self.playchoice = "A3"
-            if (self.clickx > 150 and self.clickx < 350) and (self.clicky > 250 and self.clicky < 450):
-                self.playchoice = "B1"
-            if (self.clickx > 350 and self.clickx < 550) and (self.clicky > 250 and self.clicky < 450):
-                self.playchoice = "B2"
-            if (self.clickx > 550 and self.clickx < 750) and (self.clicky > 250 and self.clicky < 450):
-                self.playchoice = "B3"
-            if (self.clickx > 150 and self.clickx < 350) and (self.clicky > 450 and self.clicky < 650):
-                self.playchoice = "C1"
-            if (self.clickx > 350 and self.clickx < 550) and (self.clicky > 450 and self.clicky < 650):
-                self.playchoice = "C2"
-            if (self.clickx > 550 and self.clickx < 750) and (self.clicky > 450 and self.clicky < 650):
-                self.playchoice = "C3"
+            self.set_players_choice()
 
         #<<Cats>>
         if self.status != "won" and self.status != "lost" and self.A1 != "" and self.A2 != "" and self.A3 != "" and self.B1 != "" and self.B2 != "" and self.B3 != "" and self.C1 != "" and self.C2 != "" and self.C3 != "":
@@ -635,6 +617,28 @@ class Game:
         quitgame = menufont.render("Quit Game", True, BLACK)
         self.screen.blit(quitgame, [365, 435])
         pygame.draw.rect(self.screen, BLACK, [250, 400, 400, 100], 2)
+
+    def get_position_from_click_coordinates(self):
+        column = ""
+        if (self.clickx > 150 and self.clickx < 350):
+            column = "1"
+        elif (self.clickx > 350 and self.clickx < 550):
+            column = "2"
+        elif (self.clickx > 550 and self.clickx < 750):
+            column = "3"
+
+        row = ""
+        if (self.clicky > 50 and self.clicky < 250):
+            row = "A"
+        elif (self.clicky > 250 and self.clicky < 450):
+            row = "B"
+        elif (self.clicky > 450 and self.clicky < 650):
+            row = "C"
+
+        return row + column
+
+    def set_players_choice(self):
+        self.playchoice = self.get_position_from_click_coordinates()
 
 game = Game()
 game.run()
