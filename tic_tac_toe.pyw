@@ -19,7 +19,7 @@ class Game:
         self.computer = "O"
         self.compmove = 0
         self.turn = "player"
-        self.status = "" #to show last move
+        self.status = ""
         self.clickx = 0
         self.clicky = 0
         self.playchoice = ""
@@ -519,53 +519,14 @@ class Game:
             pygame.draw.rect(self.screen, BLACK, [575,275,150,150],2)
             pygame.draw.ellipse(self.screen,RED,[600,300,100,100],4)
 
-        #Win Menu window
         if self.window == "win":
-            pygame.time.delay(1000)
-            titlefont = pygame.font.Font(None, 56)
-            menufont = pygame.font.Font(None, 48)
-            title = titlefont.render("You Won!",True,BLUE)
-            self.screen.blit(title, [175,100])
-            #Play Again Button
-            newgame = menufont.render("Play Again",True,BLACK)
-            self.screen.blit(newgame, [365,285])
-            pygame.draw.rect(self.screen,BLACK,[250,250,400,100],2)
-            #Quit Button
-            quitgame = menufont.render("Quit Game",True,BLACK)
-            self.screen.blit(quitgame, [365,435])
-            pygame.draw.rect(self.screen,BLACK,[250,400,400,100],2)
+            self.display_post_game_menu("You Won!", BLUE)
 
-        #Lose Menu window
         if self.window == "lose":
-            pygame.time.delay(1000)
-            titlefont = pygame.font.Font(None, 56)
-            menufont = pygame.font.Font(None, 48)
-            title = titlefont.render("You lost...",True,RED)
-            self.screen.blit(title, [175,100])
-            #Play Again Button
-            newgame = menufont.render("Play Again",True,BLACK)
-            self.screen.blit(newgame, [365,285])
-            pygame.draw.rect(self.screen,BLACK,[250,250,400,100],2)
-            #Quit Button
-            quitgame = menufont.render("Quit Game",True,BLACK)
-            self.screen.blit(quitgame, [365,435])
-            pygame.draw.rect(self.screen,BLACK,[250,400,400,100],2)
+            self.display_post_game_menu("You lost...", RED)
 
-        #Cat's Game Menu window
         if self.window == "cats":
-            pygame.time.delay(1000)
-            titlefont = pygame.font.Font(None, 56)
-            menufont = pygame.font.Font(None, 48)
-            title = titlefont.render("Cat's Game!",True,GREEN)
-            self.screen.blit(title, [175,100])
-            #Play Again Button
-            newgame = menufont.render("Play Again",True,BLACK)
-            self.screen.blit(newgame, [365,285])
-            pygame.draw.rect(self.screen,BLACK,[250,250,400,100],2)
-            #Quit Button
-            quitgame = menufont.render("Quit Game",True,BLACK)
-            self.screen.blit(quitgame, [365,435])
-            pygame.draw.rect(self.screen,BLACK,[250,400,400,100],2)
+            self.display_post_game_menu("Cat's Game!", GREEN)
 
         if self.window == "game":
             gamefont = pygame.font.Font(None, 48)
@@ -659,6 +620,21 @@ class Game:
             self.playchoice = ""
         if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 400 and self.clicky <= 500):
             done = True
+
+    def display_post_game_menu(self, message, message_color):
+        titlefont = pygame.font.Font(None, 56)
+        title = titlefont.render(message, True, message_color)
+        pygame.time.delay(1000)
+        menufont = pygame.font.Font(None, 48)
+        self.screen.blit(title, [175, 100])
+
+        newgame = menufont.render("Play Again", True, BLACK)
+        self.screen.blit(newgame, [365, 285])
+        pygame.draw.rect(self.screen, BLACK, [250, 250, 400, 100], 2)
+
+        quitgame = menufont.render("Quit Game", True, BLACK)
+        self.screen.blit(quitgame, [365, 435])
+        pygame.draw.rect(self.screen, BLACK, [250, 400, 400, 100], 2)
 
 game = Game()
 game.run()
