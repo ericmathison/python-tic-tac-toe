@@ -61,8 +61,7 @@ class Game:
         if self.window == "main":
             if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 150 and self.clicky <= 250):
                 self.window = "choice"
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
             if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 300 and self.clicky <= 400):
                 done = True
 
@@ -72,21 +71,18 @@ class Game:
                 self.player = "X"
                 self.computer =  "O"
                 self.window = "game"
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
             if (self.clickx >= 600 and self.clickx <= 700) and (self.clicky >= 300 and self.clicky <= 400):
                 self.player = "O"
                 self.computer = "X"
                 self.window = "game"
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
 
         #Win Menu Logic
         if self.window == "win":
             if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
                 self.window = "choice"
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.A1 = ""
                 self.A2 = ""
                 self.A3 = ""
@@ -105,8 +101,7 @@ class Game:
         if self.window == "lose":
             if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
                 self.window = "choice"
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.A1 = ""
                 self.A2 = ""
                 self.A3 = ""
@@ -125,8 +120,7 @@ class Game:
         if self.window == "cats":
             if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
                 self.window = "game"
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.A1 = ""
                 self.A2 = ""
                 self.A3 = ""
@@ -164,124 +158,99 @@ class Game:
 
         #<<Cats>>
         if self.status != "won" and self.status != "lost" and self.A1 != "" and self.A2 != "" and self.A3 != "" and self.B1 != "" and self.B2 != "" and self.B3 != "" and self.C1 != "" and self.C2 != "" and self.C3 != "":
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.window = "cats"
 
         #<<Win>>
         #Two in a row
         #1
         if self.A2 == self.player and self.A3 == self.player and self.A1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.B2 == self.player and self.B3 == self.player and self.B1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.C2 == self.player and self.C3 == self.player and self.C1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #2
         if self.A1 == self.player and self.A3 == self.player and self.A2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.B1 == self.player and self.B3 == self.player and self.B2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.C1 == self.player and self.C3 == self.player and self.C2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #3
         if self.A1 == self.player and self.A2 == self.player and self.A3 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.B1 == self.player and self.B2 == self.player and self.B3 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.C1 == self.player and self.C2 == self.player and self.C3 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
 
         #Two in a column
         #A
         if self.C1 == self.player and self.B1 == self.player and self.A1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.C2 == self.player and self.B2 == self.player and self.A2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.C3 == self.player and self.B3 == self.player and self.A3 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #B
         if self.A1 == self.player and self.C3 == self.player and self.B1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.A2 == self.player and self.C2 == self.player and self.B2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.A3 == self.player and self.C3 == self.player and self.B3 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #C
         if self.A1 == self.player and self.B1 == self.player and self.C1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.A2 == self.player and self.B2 == self.player and self.C2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         if self.A3 == self.player and self.B3 == self.player and self.C3 == self.player:
             self.C3 = self.computer
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
 
         #Two diagonal
         #A1-C3
         if self.A1 == self.player and self.C3 == self.player and self.B2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #A3-C1
         if self.A3 == self.player and self.C1 == self.player and self.B2 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #A1-B2
         if self.A1 == self.player and self.B2 == self.player and self.C3 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #C1-B2
         if self.C1 == self.player and self.B2 == self.player and self.A3 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #A3-B2
         if self.A3 == self.player and self.B2 == self.player and self.C1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #C3-B2
         if self.C3 == self.player and self.B2 == self.player and self.A1 == self.player:
-            self.clickx = 0
-            self.clicky = 0
+            self.reset_clicks()
             self.status = "won"
         #End <<Win>>
 
@@ -318,58 +287,49 @@ class Game:
             #1
             if self.A2 == self.computer and self.A3 == self.computer and self.turn == "comp" and self.A1 == "":
                 self.A1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.B2 == self.computer and self.B3 == self.computer and self.turn == "comp" and self.B1 == "":
                 self.B1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.C2 == self.computer and self.C3 == self.computer and self.turn == "comp" and self.C1 == "":
                 self.C1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #2
             if self.A1 == self.computer and self.A3 == self.computer and self.turn == "comp" and self.A2 == "":
                 self.A2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.B1 == self.computer and self.B3 == self.computer and self.turn == "comp" and self.B2 == "":
                 self.B2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.C1 == self.computer and self.C3 == self.computer and self.turn == "comp" and self.C2 == "":
                 self.C2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #3
             if self.A1 == self.computer and self.A2 == self.computer and self.turn == "comp" and self.A3 == "":
                 self.A3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.B1 == self.computer and self.B2 == self.computer and self.turn == "comp" and self.B3 == "":
                 self.B3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.C1 == self.computer and self.C2 == self.computer and self.turn == "comp" and self.C3 == "":
                 self.C3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
 
@@ -377,58 +337,49 @@ class Game:
             #A
             if self.C1 == self.computer and self.B1 == self.computer and self.turn == "comp" and self.A1 == "":
                 self.A1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.C2 == self.computer and self.B2 == self.computer and self.turn == "comp" and self.A2 == "":
                 self.A2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.C3 == self.computer and self.B3 == self.computer and self.turn == "comp" and self.A3 == "":
                 self.A3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #B
             if self.A1 == self.computer and self.C3 == self.computer and self.turn == "comp" and self.B1 == "":
                 self.B1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.A2 == self.computer and self.C2 == self.computer and self.turn == "comp" and self.B2 == "":
                 self.B2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.A3 == self.computer and self.C3 == self.computer and self.turn == "comp" and self.B3 == "":
                 self.B3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
                 #C
             if self.A1 == self.computer and self.B1 == self.computer and self.turn == "comp" and self.C1 == "":
                 self.C1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.A2 == self.computer and self.B2 == self.computer and self.turn == "comp" and self.C2 == "":
                 self.C2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             if self.A3 == self.computer and self.B3 == self.computer and self.turn == "comp" and self.C3 == "":
                 self.C3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
 
@@ -436,43 +387,37 @@ class Game:
             #A1-C3
             if self.A1 == self.computer and self.C1 == self.computer and self.turn == "comp" and self.B2 == "":
                 self.B2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #A3-C1
             if self.A3 == self.computer and self.C1 == self.computer and self.turn == "comp" and self.B2 == "":
                 self.B2 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #A1-B2
             if self.A1 == self.computer and self.B2 == self.computer and self.turn == "comp" and self.C3 == "":
                 self.C3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #C1-B2
             if self.C1 == self.computer and self.B2 == self.computer and self.turn == "comp" and self.A3 == "":
                 self.A3 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #A3-B2
             if self.A3 == self.computer and self.B2 == self.computer and self.turn == "comp" and self.C1 == "":
                 self.C1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
             #C3-B2
             if self.C3 == self.computer and self.B2 == self.computer and self.turn == "comp" and self.A1 == "":
                 self.A1 = self.computer
-                self.clickx = 0
-                self.clicky = 0
+                self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
 
@@ -744,6 +689,10 @@ class Game:
         pygame.display.flip()
 
         clock.tick(60)
+
+    def reset_clicks(self):
+        self.clickx = 0
+        self.clicky = 0
 
 game = Game()
 game.run()
