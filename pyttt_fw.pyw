@@ -79,61 +79,8 @@ class Game:
                 self.reset_clicks()
 
         #Win Menu Logic
-        if self.window == "win":
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
-                self.window = "choice"
-                self.reset_clicks()
-                self.A1 = ""
-                self.A2 = ""
-                self.A3 = ""
-                self.B1 = ""
-                self.B2 = ""
-                self.B3 = ""
-                self.C1 = ""
-                self.C2 = ""
-                self.C3 = ""
-                self.turn = "player"
-                self.playchoice = ""
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 400 and self.clicky <= 500):
-                done = True
-
-        #Lose Menu Logic
-        if self.window == "lose":
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
-                self.window = "choice"
-                self.reset_clicks()
-                self.A1 = ""
-                self.A2 = ""
-                self.A3 = ""
-                self.B1 = ""
-                self.B2 = ""
-                self.B3 = ""
-                self.C1 = ""
-                self.C2 = ""
-                self.C3 = ""
-                self.turn = "player"
-                self.playchoice = ""
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 400 and self.clicky <= 500):
-                done = True
-
-        #Cat's Game Menu Logic
-        if self.window == "cats":
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
-                self.window = "game"
-                self.reset_clicks()
-                self.A1 = ""
-                self.A2 = ""
-                self.A3 = ""
-                self.B1 = ""
-                self.B2 = ""
-                self.B3 = ""
-                self.C1 = ""
-                self.C2 = ""
-                self.C3 = ""
-                self.turn = "player"
-                self.playchoice = ""
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 400 and self.clicky <= 500):
-                done = True
+        if self.window == "win" or self.window == "lose" or self.window == "cats":
+            self.process_post_game_menu()
 
         #Get players choice
         if self.window == "game":
@@ -693,6 +640,25 @@ class Game:
     def reset_clicks(self):
         self.clickx = 0
         self.clicky = 0
+
+    def process_post_game_menu(self):
+        global done
+        if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
+            self.window = "choice"
+            self.reset_clicks()
+            self.A1 = ""
+            self.A2 = ""
+            self.A3 = ""
+            self.B1 = ""
+            self.B2 = ""
+            self.B3 = ""
+            self.C1 = ""
+            self.C2 = ""
+            self.C3 = ""
+            self.turn = "player"
+            self.playchoice = ""
+        if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 400 and self.clicky <= 500):
+            done = True
 
 game = Game()
 game.run()
