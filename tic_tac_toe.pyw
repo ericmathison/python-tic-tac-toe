@@ -59,20 +59,20 @@ class Game:
 
         #Main Menu Logic
         if self.window == "main":
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 150 and self.clicky <= 250):
+            if (250 <= self.clickx <= 650) and (150 <= self.clicky <= 250):
                 self.window = "choice"
                 self.reset_clicks()
-            if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 300 and self.clicky <= 400):
+            if (250 <= self.clickx <= 650) and (300 <= self.clicky <= 400):
                 done = True
 
         #Symbol choice Menu Logic
         if self.window == "choice":
-            if (self.clickx >= 200 and self.clickx <= 300) and (self.clicky >= 300 and self.clicky <= 400):
+            if (200 <= self.clickx <= 300) and (300 <= self.clicky <= 400):
                 self.player = "X"
                 self.computer =  "O"
                 self.window = "game"
                 self.reset_clicks()
-            if (self.clickx >= 600 and self.clickx <= 700) and (self.clicky >= 300 and self.clicky <= 400):
+            if (600 <= self.clickx <= 700) and (300 <= self.clicky <= 400):
                 self.player = "O"
                 self.computer = "X"
                 self.window = "game"
