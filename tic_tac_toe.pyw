@@ -422,31 +422,31 @@ class Game:
                 self.turn = "player"
 
             #Random moves
-            if self.compmove == 1 and self.A1 != self.player and self.A1 != self.computer and self.turn == "comp":
+            if self.compmove == 1 and self.A1 == "" and self.turn == "comp":
                 self.A1 = self.computer
                 self.turn = "player"
-            elif self.compmove == 2 and self.A2 != self.player and self.A2 != self.computer and self.turn == "comp":
+            elif self.compmove == 2 and self.A2 == "" and self.turn == "comp":
                 self.A2 = self.computer
                 self.turn = "player"
-            elif self.compmove == 3 and self.A3 != self.player and self.A3 != self.computer and self.turn == "comp":
+            elif self.compmove == 3 and self.A3 == "" and self.turn == "comp":
                 self.A3 = self.computer
                 self.turn = "player"
-            elif self.compmove == 4 and self.B1 != self.player and self.B1 != self.computer and self.turn == "comp":
+            elif self.compmove == 4 and self.B1 == "" and self.turn == "comp":
                 self.B1 = self.computer
                 self.turn = "player"
-            elif self.compmove == 5 and self.B2 != self.player and self.B2 != self.computer and self.turn == "comp":
+            elif self.compmove == 5 and self.B2 == "" and self.turn == "comp":
                 self.B2 = self.computer
                 self.turn = "player"
-            elif self.compmove == 6 and self.B3 != self.player and self.B3 != self.computer and self.turn == "comp":
+            elif self.compmove == 6 and self.B3 == "" and self.turn == "comp":
                 self.B3 = self.computer
                 self.turn = "player"
-            elif self.compmove == 7 and self.C1 != self.player and self.C1 != self.computer and self.turn == "comp":
+            elif self.compmove == 7 and self.C1 == "" and self.turn == "comp":
                 self.C1 = self.computer
                 self.turn = "player"
-            elif self.compmove == 8 and self.C2 != self.player and self.C2 != self.computer and self.turn == "comp":
+            elif self.compmove == 8 and self.C2 == "" and self.turn == "comp":
                 self.C2 = self.computer
                 self.turn = "player"
-            elif self.compmove == 9 and self.C3 != self.player and self.C3 != self.computer and self.turn == "comp":
+            elif self.compmove == 9 and self.C3 == "" and self.turn == "comp":
                 self.C3 = self.computer
                 self.turn = "player"
 
