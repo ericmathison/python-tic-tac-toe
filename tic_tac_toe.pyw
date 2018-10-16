@@ -78,8 +78,7 @@ class Game:
                 self.window = "game"
                 self.reset_clicks()
 
-        #Win Menu Logic
-        if self.window == "win" or self.window == "lose" or self.window == "cats":
+        if self.window in ["win", "lose", "cats"]:
             self.process_post_game_menu()
 
         if self.window == "game":
