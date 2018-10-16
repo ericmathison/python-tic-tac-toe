@@ -183,27 +183,7 @@ class Game:
             self.status = "won"
         #End <<Win>>
 
-        #Move choice to coordinate variables
-        if self.playchoice == "A1" and self.A1 == "":
-            self.A1 = self.player
-        elif self.playchoice == "A2" and self.A2 == "":
-            self.A2 = self.player
-        elif self.playchoice == "A3" and self.A3 == "":
-            self.A3 = self.player
-        elif self.playchoice == "B1" and self.B1 == "":
-            self.B1 = self.player
-        elif self.playchoice == "B2" and self.B2 == "":
-            self.B2 = self.player
-        elif self.playchoice == "B3" and self.B3 == "":
-            self.B3 = self.player
-        elif self.playchoice == "C1" and self.C1 == "":
-            self.C1= self.player
-        elif self.playchoice == "C2" and self.C2 == "":
-            self.C2 = self.player
-        elif self.playchoice == "C3" and self.C3 == "":
-            self.C3 = self.player
-        else:
-            self.turn = "player"
+        setattr(self, self.playchoice, self.player)
 
         # Computers turn
         comp_try = 0
