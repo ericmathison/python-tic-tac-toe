@@ -558,7 +558,7 @@ class Game:
 
     def process_post_game_menu(self):
         global done
-        if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 250 and self.clicky <= 350):
+        if (250 <= self.clickx <= 650) and (250 <= self.clicky <= 350):
             self.window = "choice"
             self.reset_clicks()
             self.A1 = ""
@@ -572,7 +572,7 @@ class Game:
             self.C3 = ""
             self.turn = "player"
             self.playchoice = ""
-        if (self.clickx >= 250 and self.clickx <= 650) and (self.clicky >= 400 and self.clicky <= 500):
+        if (250 <= self.clickx <= 650) and (400 <= self.clicky <= 500):
             done = True
 
     def display_post_game_menu(self, message, message_color):
