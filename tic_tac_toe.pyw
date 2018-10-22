@@ -425,96 +425,32 @@ class Game:
         clock.tick(60)
 
     def check_for_win(self):
-        #Two in a row
-        #1
-        if self.A2 == self.A3 == self.A1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.B2 == self.B3 == self.B1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.C2 == self.C3 == self.C1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #2
-        if self.A1 == self.A3 == self.A2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.B1 == self.B3 == self.B2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.C1 == self.C3 == self.C2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #3
-        if self.A1 == self.A2 == self.A3 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.B1 == self.B2 == self.B3 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.C1 == self.C2 == self.C3 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-
-        #Two in a column
-        #A
-        if self.C1 == self.B1 == self.A1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.C2 == self.B2 == self.A2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.C3 == self.B3 == self.A3 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #B
-        if self.A1 == self.C3 == self.B1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.A2 == self.C2 == self.B2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.A3 == self.C3 == self.B3 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #C
-        if self.A1 == self.B1 == self.C1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.A2 == self.B2 == self.C2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        if self.A3 == self.B3 == self.C3 == self.player:
-            self.C3 = self.computer
-            self.reset_clicks()
-            self.status = "won"
-
-        #Two diagonal
-        #A1-C3
-        if self.A1 == self.C3 == self.B2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #A3-C1
-        if self.A3 == self.C1 == self.B2 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #A1-B2
-        if self.A1 == self.B2 == self.C3 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #C1-B2
-        if self.C1 == self.B2 == self.A3 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #A3-B2
-        if self.A3 == self.B2 == self.C1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
-        #C3-B2
-        if self.C3 == self.B2 == self.A1 == self.player:
-            self.reset_clicks()
-            self.status = "won"
+        if (self.A2 == self.A3 == self.A1 == self.player or
+            self.B2 == self.B3 == self.B1 == self.player or
+            self.C2 == self.C3 == self.C1 == self.player or
+            self.A1 == self.A3 == self.A2 == self.player or
+            self.B1 == self.B3 == self.B2 == self.player or
+            self.C1 == self.C3 == self.C2 == self.player or
+            self.A1 == self.A2 == self.A3 == self.player or
+            self.B1 == self.B2 == self.B3 == self.player or
+            self.C1 == self.C2 == self.C3 == self.player or
+            self.C1 == self.B1 == self.A1 == self.player or
+            self.C2 == self.B2 == self.A2 == self.player or
+            self.C3 == self.B3 == self.A3 == self.player or
+            self.A1 == self.C3 == self.B1 == self.player or
+            self.A2 == self.C2 == self.B2 == self.player or
+            self.A3 == self.C3 == self.B3 == self.player or
+            self.A1 == self.B1 == self.C1 == self.player or
+            self.A2 == self.B2 == self.C2 == self.player or
+            self.A3 == self.B3 == self.C3 == self.player or
+            self.A1 == self.C3 == self.B2 == self.player or
+            self.A3 == self.C1 == self.B2 == self.player or
+            self.A1 == self.B2 == self.C3 == self.player or
+            self.C1 == self.B2 == self.A3 == self.player or
+            self.A3 == self.B2 == self.C1 == self.player or
+            self.C3 == self.B2 == self.A1 == self.player):
+                self.reset_clicks()
+                self.status = "won"
 
     def draw_each_x(self):
         coordinates = {
