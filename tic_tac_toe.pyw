@@ -99,144 +99,7 @@ class Game:
             self.compmove = random.randint(1,10)
             comp_try = comp_try + 1
 
-            #<<Lose>>
-            #Two in a row
-            #1
-            if self.A2 == self.A3 == self.computer and self.turn == "comp" and self.A1 == "":
-                self.A1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.B2 == self.B3 == self.computer and self.turn == "comp" and self.B1 == "":
-                self.B1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.C2 == self.C3 == self.computer and self.turn == "comp" and self.C1 == "":
-                self.C1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #2
-            if self.A1 == self.A3 == self.computer and self.turn == "comp" and self.A2 == "":
-                self.A2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.B1 == self.B3 == self.computer and self.turn == "comp" and self.B2 == "":
-                self.B2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.C1 == self.C3 == self.computer and self.turn == "comp" and self.C2 == "":
-                self.C2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #3
-            if self.A1 == self.A2 == self.computer and self.turn == "comp" and self.A3 == "":
-                self.A3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.B1 == self.B2 == self.computer and self.turn == "comp" and self.B3 == "":
-                self.B3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.C1 == self.C2 == self.computer and self.turn == "comp" and self.C3 == "":
-                self.C3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-
-            #Two in a column
-            #A
-            if self.C1 == self.B1 == self.computer and self.turn == "comp" and self.A1 == "":
-                self.A1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.C2 == self.B2 == self.computer and self.turn == "comp" and self.A2 == "":
-                self.A2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.C3 == self.B3 == self.computer and self.turn == "comp" and self.A3 == "":
-                self.A3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #B
-            if self.A1 == self.C3 == self.computer and self.turn == "comp" and self.B1 == "":
-                self.B1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.A2 == self.C2 == self.computer and self.turn == "comp" and self.B2 == "":
-                self.B2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.A3 == self.C3 == self.computer and self.turn == "comp" and self.B3 == "":
-                self.B3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-                #C
-            if self.A1 == self.B1 == self.computer and self.turn == "comp" and self.C1 == "":
-                self.C1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.A2 == self.B2 == self.computer and self.turn == "comp" and self.C2 == "":
-                self.C2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            if self.A3 == self.B3 == self.computer and self.turn == "comp" and self.C3 == "":
-                self.C3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-
-            #Two diagonal
-            #A1-C3
-            if self.A1 == self.C1 == self.computer and self.turn == "comp" and self.B2 == "":
-                self.B2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #A3-C1
-            if self.A3 == self.C1 == self.computer and self.turn == "comp" and self.B2 == "":
-                self.B2 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #A1-B2
-            if self.A1 == self.B2 == self.computer and self.turn == "comp" and self.C3 == "":
-                self.C3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #C1-B2
-            if self.C1 == self.B2 == self.computer and self.turn == "comp" and self.A3 == "":
-                self.A3 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #A3-B2
-            if self.A3 == self.B2 == self.computer and self.turn == "comp" and self.C1 == "":
-                self.C1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
-            #C3-B2
-            if self.C3 == self.B2 == self.computer and self.turn == "comp" and self.A1 == "":
-                self.A1 = self.computer
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
+            self.check_for_loss()
 
             #<<Stop player>>
             #Two in a row
@@ -451,6 +314,28 @@ class Game:
             self.C3 == self.B2 == self.A1 == self.player):
                 self.reset_clicks()
                 self.status = "won"
+
+    def check_for_loss(self):
+        if self.turn == "comp":
+            loose_scenarios = [
+                ["A1", ["A2", "A3"]], ["B1", ["B2", "B3"]], ["C1", ["C2", "C3"]],
+                ["A2", ["A1", "A3"]], ["B2", ["B1", "B3"]], ["C2", ["C1", "C3"]],
+                ["A3", ["A1", "A2"]], ["B3", ["B1", "B2"]], ["C3", ["C1", "C2"]],
+                ["A1", ["C1", "B1"]], ["A2", ["C2", "B2"]], ["A3", ["C3", "B3"]],
+                ["B1", ["A1", "C3"]], ["B2", ["A2", "C2"]], ["B3", ["A3", "C3"]],
+                ["C1", ["A1", "B1"]], ["C2", ["A2", "B2"]], ["C3", ["A3", "B3"]],
+                ["B2", ["A1", "C1"]], ["B2", ["A3", "C1"]], ["C3", ["A1", "B2"]],
+                ["A3", ["C1", "B2"]], ["C1", ["A3", "B2"]], ["A1", ["C3", "B2"]]
+            ]
+
+            for scenario in loose_scenarios:
+                first_position = getattr(self, scenario[1][0])
+                second_position = getattr(self, scenario[1][1])
+                computers_move = getattr(self, scenario[0])
+                if computers_move == "" and first_position == second_position == self.computer:
+                    self.reset_clicks()
+                    self.status = "lost"
+                    self.turn = "player"
 
     def draw_each_x(self):
         coordinates = {
