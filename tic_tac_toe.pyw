@@ -93,43 +93,7 @@ class Game:
 
         setattr(self, self.playchoice, self.player)
 
-        # Computers turn
-        comp_try = 0
-        while self.turn == "comp" and comp_try < 10:
-            self.compmove = random.randint(1,10)
-            comp_try = comp_try + 1
-
-            self.check_for_loss()
-            self.try_preventing_win()
-
-            #Random moves
-            if self.compmove == 1 and self.A1 == "" and self.turn == "comp":
-                self.A1 = self.computer
-                self.turn = "player"
-            elif self.compmove == 2 and self.A2 == "" and self.turn == "comp":
-                self.A2 = self.computer
-                self.turn = "player"
-            elif self.compmove == 3 and self.A3 == "" and self.turn == "comp":
-                self.A3 = self.computer
-                self.turn = "player"
-            elif self.compmove == 4 and self.B1 == "" and self.turn == "comp":
-                self.B1 = self.computer
-                self.turn = "player"
-            elif self.compmove == 5 and self.B2 == "" and self.turn == "comp":
-                self.B2 = self.computer
-                self.turn = "player"
-            elif self.compmove == 6 and self.B3 == "" and self.turn == "comp":
-                self.B3 = self.computer
-                self.turn = "player"
-            elif self.compmove == 7 and self.C1 == "" and self.turn == "comp":
-                self.C1 = self.computer
-                self.turn = "player"
-            elif self.compmove == 8 and self.C2 == "" and self.turn == "comp":
-                self.C2 = self.computer
-                self.turn = "player"
-            elif self.compmove == 9 and self.C3 == "" and self.turn == "comp":
-                self.C3 = self.computer
-                self.turn = "player"
+        self.computers_turn()
 
         #Drawing code
         self.screen.fill(WHITE)
@@ -242,7 +206,13 @@ class Game:
                     getattr(self, position[2]) == ""):
                         setattr(self, position[2], self.computer)
                         self.turn = "player"
+                        return
 
+    def make_random_computer_move(self):
+        positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+        if getattr(self, positions[self.compmove]) == "" and self.turn == "comp":
+            setattr(self, positions[self.compmove], self.computer)
+            self.turn = "player"
 
     def check_for_loss(self):
         if self.turn == "comp":
@@ -265,6 +235,14 @@ class Game:
                     self.reset_clicks()
                     self.status = "lost"
                     self.turn = "player"
+
+    def computers_turn(self):
+        if self.turn == "comp":
+            self.compmove = random.randint(0, 8)
+
+            self.check_for_loss()
+            self.try_preventing_win()
+            self.make_random_computer_move()
 
     def draw_each_x(self):
         coordinates = {
