@@ -59,20 +59,20 @@ class Game:
 
         #Main Menu Logic
         if self.window == "main":
-            if (250 <= self.clickx <= 650) and (150 <= self.clicky <= 250):
+            if 250 <= self.clickx <= 650 and 150 <= self.clicky <= 250:
                 self.window = "choice"
                 self.reset_clicks()
-            if (250 <= self.clickx <= 650) and (300 <= self.clicky <= 400):
+            if 250 <= self.clickx <= 650 and 300 <= self.clicky <= 400:
                 done = True
 
         #Symbol choice Menu Logic
         if self.window == "choice":
-            if (200 <= self.clickx <= 300) and (300 <= self.clicky <= 400):
+            if 200 <= self.clickx <= 300 and 300 <= self.clicky <= 400:
                 self.player = "X"
                 self.computer =  "O"
                 self.window = "game"
                 self.reset_clicks()
-            if (600 <= self.clickx <= 700) and (300 <= self.clicky <= 400):
+            if 600 <= self.clickx <= 700 and 300 <= self.clicky <= 400:
                 self.player = "O"
                 self.computer = "X"
                 self.window = "game"
@@ -287,7 +287,7 @@ class Game:
 
     def process_post_game_menu(self):
         global done
-        if (250 <= self.clickx <= 650) and (250 <= self.clicky <= 350):
+        if 250 <= self.clickx <= 650 and 250 <= self.clicky <= 350:
             self.window = "choice"
             self.reset_clicks()
             self.A1 = ""
@@ -301,7 +301,7 @@ class Game:
             self.C3 = ""
             self.turn = "player"
             self.playchoice = ""
-        if (250 <= self.clickx <= 650) and (400 <= self.clicky <= 500):
+        if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
             done = True
 
     def display_post_game_menu(self, message, message_color):
@@ -321,19 +321,19 @@ class Game:
 
     def get_position_from_click_coordinates(self):
         column = ""
-        if (150 < self.clickx < 350):
+        if 150 < self.clickx < 350:
             column = "1"
-        elif (350 < self.clickx < 550):
+        elif 350 < self.clickx < 550:
             column = "2"
-        elif (550 < self.clickx < 750):
+        elif 550 < self.clickx < 750:
             column = "3"
 
         row = ""
-        if (50 < self.clicky < 250):
+        if 50 < self.clicky < 250:
             row = "A"
-        elif (250 < self.clicky < 450):
+        elif 250 < self.clicky < 450:
             row = "B"
-        elif (450 < self.clicky < 650):
+        elif 450 < self.clicky < 650:
             row = "C"
 
         return row + column
