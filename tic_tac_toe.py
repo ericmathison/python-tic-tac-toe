@@ -162,32 +162,26 @@ class Game:
         clock.tick(60)
 
     def check_for_win(self):
-        if (self.A2 == self.A3 == self.A1 == self.player or
-            self.B2 == self.B3 == self.B1 == self.player or
-            self.C2 == self.C3 == self.C1 == self.player or
-            self.A1 == self.A3 == self.A2 == self.player or
-            self.B1 == self.B3 == self.B2 == self.player or
-            self.C1 == self.C3 == self.C2 == self.player or
-            self.A1 == self.A2 == self.A3 == self.player or
-            self.B1 == self.B2 == self.B3 == self.player or
-            self.C1 == self.C2 == self.C3 == self.player or
-            self.C1 == self.B1 == self.A1 == self.player or
-            self.C2 == self.B2 == self.A2 == self.player or
-            self.C3 == self.B3 == self.A3 == self.player or
-            self.A1 == self.C3 == self.B1 == self.player or
-            self.A2 == self.C2 == self.B2 == self.player or
-            self.A3 == self.C3 == self.B3 == self.player or
-            self.A1 == self.B1 == self.C1 == self.player or
-            self.A2 == self.B2 == self.C2 == self.player or
-            self.A3 == self.B3 == self.C3 == self.player or
-            self.A1 == self.C3 == self.B2 == self.player or
-            self.A3 == self.C1 == self.B2 == self.player or
-            self.A1 == self.B2 == self.C3 == self.player or
-            self.C1 == self.B2 == self.A3 == self.player or
-            self.A3 == self.B2 == self.C1 == self.player or
-            self.C3 == self.B2 == self.A1 == self.player):
+        winning_conditions = [
+            ["A2", "A3", "A1"], ["B2", "B3", "B1"],
+            ["C2", "C3", "C1"], ["A1", "A3", "A2"],
+            ["B1", "B3", "B2"], ["C1", "C3", "C2"],
+            ["A1", "A2", "A3"], ["B1", "B2", "B3"],
+            ["C1", "C2", "C3"], ["C1", "B1", "A1"],
+            ["C2", "B2", "A2"], ["C3", "B3", "A3"],
+            ["A1", "C3", "B1"], ["A2", "C2", "B2"],
+            ["A3", "C3", "B3"], ["A1", "B1", "C1"],
+            ["A2", "B2", "C2"], ["A3", "B3", "C3"],
+            ["A1", "C3", "B2"], ["A3", "C1", "B2"],
+            ["A1", "B2", "C3"], ["C1", "B2", "A3"],
+            ["A3", "B2", "C1"], ["C3", "B2", "A1"]]
+
+        for cond in winning_conditions:
+            if (getattr(self, cond[0]) == getattr(self, cond[1]) ==
+            getattr(self, cond[2]) == self.player):
                 self.reset_clicks()
                 self.status = "won"
+                return
 
     def try_preventing_win(self):
         if self.turn == "comp":
