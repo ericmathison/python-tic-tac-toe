@@ -98,33 +98,11 @@ class Game:
         #Drawing code
         self.screen.fill(WHITE)
 
-        #Main Menu window
         if self.window == "main":
-            titlefont = pygame.font.Font(None, 56)
-            menufont = pygame.font.Font(None, 48)
-            title = titlefont.render("Welcome to Daniel's Tic Tac Toe",True,BLACK)
-            self.screen.blit(title, [175,50])
-            #New game Button
-            newgame = menufont.render("New Game",True,BLACK)
-            self.screen.blit(newgame, [365,185])
-            pygame.draw.rect(self.screen,BLACK,[250,150,400,100],2)
-            #Quit Button
-            quitgame = menufont.render("Quit Game",True,BLACK)
-            self.screen.blit(quitgame, [365,335])
-            pygame.draw.rect(self.screen,BLACK,[250,300,400,100],2)
+            self.display_main_menu()
 
-        #Symbol choice Menu window
         if self.window == "choice":
-            titlefont = pygame.font.Font(None, 56)
-            title = titlefont.render("Choose your symbol...",True,BLACK)
-            self.screen.blit(title, [235,100])
-            #Choice X
-            pygame.draw.rect(self.screen, BLACK, [175,275,150,150],2)
-            pygame.draw.line(self.screen, BLACK, [200,300], [300,400], 5)
-            pygame.draw.line(self.screen, BLACK, [300,300], [200,400], 5)
-            #Choice O
-            pygame.draw.rect(self.screen, BLACK, [575,275,150,150],2)
-            pygame.draw.ellipse(self.screen,RED,[600,300,100,100],4)
+            self.display_letter_choice_menu()
 
         if self.window == "win":
             self.display_post_game_menu("You Won!", BLUE)
@@ -312,6 +290,32 @@ class Game:
         quitgame = menufont.render("Quit Game", True, BLACK)
         self.screen.blit(quitgame, [365, 435])
         pygame.draw.rect(self.screen, BLACK, [250, 400, 400, 100], 2)
+
+    def display_main_menu(self):
+        titlefont = pygame.font.Font(None, 56)
+        menufont = pygame.font.Font(None, 48)
+        title = titlefont.render("Welcome to Daniel's Tic Tac Toe",True,BLACK)
+        self.screen.blit(title, [175,50])
+        #New game Button
+        newgame = menufont.render("New Game",True,BLACK)
+        self.screen.blit(newgame, [365,185])
+        pygame.draw.rect(self.screen,BLACK,[250,150,400,100],2)
+        #Quit Button
+        quitgame = menufont.render("Quit Game",True,BLACK)
+        self.screen.blit(quitgame, [365,335])
+        pygame.draw.rect(self.screen,BLACK,[250,300,400,100],2)
+
+    def display_letter_choice_menu(self):
+        titlefont = pygame.font.Font(None, 56)
+        title = titlefont.render("Choose your symbol...",True,BLACK)
+        self.screen.blit(title, [235,100])
+        #Choice X
+        pygame.draw.rect(self.screen, BLACK, [175,275,150,150],2)
+        pygame.draw.line(self.screen, BLACK, [200,300], [300,400], 5)
+        pygame.draw.line(self.screen, BLACK, [300,300], [200,400], 5)
+        #Choice O
+        pygame.draw.rect(self.screen, BLACK, [575,275,150,150],2)
+        pygame.draw.ellipse(self.screen,RED,[600,300,100,100],4)
 
     def get_position_from_click_coordinates(self):
         column = ""
