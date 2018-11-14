@@ -115,15 +115,15 @@ class Game:
 
         if self.window == "game":
             gamefont = pygame.font.Font(None, 48)
-            game_text = gamefont.render("Player is: " + self.player,True,BLACK)
-            self.screen.blit(game_text, [350,5])
-            turn_text = gamefont.render("It's your turn...",True,BLACK)
-            self.screen.blit(turn_text, [350,655])
+            game_text = gamefont.render("Player is: " + self.player, True, BLACK)
+            self.screen.blit(game_text, [350, 5])
+            turn_text = gamefont.render("It's your turn...", True, BLACK)
+            self.screen.blit(turn_text, [350, 655])
 
-            pygame.draw.line(self.screen, BLACK, [150,250], [750,250], 5)
-            pygame.draw.line(self.screen, BLACK, [150,450], [750,450], 5)
-            pygame.draw.line(self.screen, BLACK, [350,50], [350,650], 5)
-            pygame.draw.line(self.screen, BLACK, [550,50], [550,650], 5)
+            pygame.draw.line(self.screen, BLACK, [150, 250], [750, 250], 5)
+            pygame.draw.line(self.screen, BLACK, [150, 450], [750, 450], 5)
+            pygame.draw.line(self.screen, BLACK, [350, 50], [350, 650], 5)
+            pygame.draw.line(self.screen, BLACK, [550, 50], [550, 650], 5)
 
             self.draw_each_x()
             self.draw_each_o()
@@ -218,15 +218,15 @@ class Game:
 
     def draw_each_x(self):
         coordinates = {
-                "A1": [[200,100], [300,200], [300,100], [200,200]],
-                "A2": [[400,100], [500,200], [500,100], [400,200]],
-                "A3": [[600,100], [700,200], [700,100], [600,200]],
-                "B1": [[200,300], [300,400], [300,300], [200,400]],
-                "B2": [[400,300], [500,400], [500,300], [400,400]],
-                "B3": [[600,300], [700,400], [700,300], [600,400]],
-                "C1": [[200,500], [300,600], [300,500], [200,600]],
-                "C2": [[400,500], [500,600], [500,500], [400,600]],
-                "C3": [[600,500], [700,600], [700,500], [600,600]]
+                "A1": [[200, 100], [300, 200], [300, 100], [200, 200]],
+                "A2": [[400, 100], [500, 200], [500, 100], [400, 200]],
+                "A3": [[600, 100], [700, 200], [700, 100], [600, 200]],
+                "B1": [[200, 300], [300, 400], [300, 300], [200, 400]],
+                "B2": [[400, 300], [500, 400], [500, 300], [400, 400]],
+                "B3": [[600, 300], [700, 400], [700, 300], [600, 400]],
+                "C1": [[200, 500], [300, 600], [300, 500], [200, 600]],
+                "C2": [[400, 500], [500, 600], [500, 500], [400, 600]],
+                "C3": [[600, 500], [700, 600], [700, 500], [600, 600]]
             }
 
         positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
@@ -237,15 +237,15 @@ class Game:
                 pygame.draw.line(self.screen, BLACK, coordinates[p][2], coordinates[p][3], 5)
 
         if self.C3 == "X":
-            pygame.draw.line(self.screen, BLACK, [600,500], [700,600], 5)
-            pygame.draw.line(self.screen, BLACK, [700,500], [600,600], 5)
+            pygame.draw.line(self.screen, BLACK, [600, 500], [700, 600], 5)
+            pygame.draw.line(self.screen, BLACK, [700, 500], [600, 600], 5)
 
     def draw_each_o(self):
-        coordinates = {"A1": [200,100,100,100], "A2": [400,100,100,100],
-                "A3": [600,100,100,100], "B1": [200,300,100,100],
-                "B2": [400,300,100,100], "B3": [600,300,100,100],
-                "C1": [200,500,100,100], "C2": [400,500,100,100],
-                "C3": [600,500,100,100]}
+        coordinates = {"A1": [200, 100, 100, 100], "A2": [400, 100, 100, 100],
+                "A3": [600, 100, 100, 100], "B1": [200, 300, 100, 100],
+                "B2": [400, 300, 100, 100], "B3": [600, 300, 100, 100],
+                "C1": [200, 500, 100, 100], "C2": [400, 500, 100, 100],
+                "C3": [600, 500, 100, 100]}
 
         positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
 
@@ -294,28 +294,28 @@ class Game:
     def display_main_menu(self):
         titlefont = pygame.font.Font(None, 56)
         menufont = pygame.font.Font(None, 48)
-        title = titlefont.render("Welcome to Daniel's Tic Tac Toe",True,BLACK)
-        self.screen.blit(title, [175,50])
+        title = titlefont.render("Welcome to Daniel's Tic Tac Toe", True, BLACK)
+        self.screen.blit(title, [175, 50])
         #New game Button
-        newgame = menufont.render("New Game",True,BLACK)
-        self.screen.blit(newgame, [365,185])
-        pygame.draw.rect(self.screen,BLACK,[250,150,400,100],2)
+        newgame = menufont.render("New Game", True, BLACK)
+        self.screen.blit(newgame, [365, 185])
+        pygame.draw.rect(self.screen, BLACK, [250, 150, 400, 100], 2)
         #Quit Button
-        quitgame = menufont.render("Quit Game",True,BLACK)
-        self.screen.blit(quitgame, [365,335])
-        pygame.draw.rect(self.screen,BLACK,[250,300,400,100],2)
+        quitgame = menufont.render("Quit Game", True, BLACK)
+        self.screen.blit(quitgame, [365, 335])
+        pygame.draw.rect(self.screen, BLACK, [250, 300, 400, 100], 2)
 
     def display_letter_choice_menu(self):
         titlefont = pygame.font.Font(None, 56)
-        title = titlefont.render("Choose your symbol...",True,BLACK)
-        self.screen.blit(title, [235,100])
+        title = titlefont.render("Choose your symbol...", True, BLACK)
+        self.screen.blit(title, [235, 100])
         #Choice X
-        pygame.draw.rect(self.screen, BLACK, [175,275,150,150],2)
-        pygame.draw.line(self.screen, BLACK, [200,300], [300,400], 5)
-        pygame.draw.line(self.screen, BLACK, [300,300], [200,400], 5)
+        pygame.draw.rect(self.screen, BLACK, [175, 275, 150, 150], 2)
+        pygame.draw.line(self.screen, BLACK, [200, 300], [300, 400], 5)
+        pygame.draw.line(self.screen, BLACK, [300, 300], [200, 400], 5)
         #Choice O
-        pygame.draw.rect(self.screen, BLACK, [575,275,150,150],2)
-        pygame.draw.ellipse(self.screen,RED,[600,300,100,100],4)
+        pygame.draw.rect(self.screen, BLACK, [575, 275, 150, 150], 2)
+        pygame.draw.ellipse(self.screen, RED, [600, 300, 100, 100], 4)
 
     def get_position_from_click_coordinates(self):
         column = ""
