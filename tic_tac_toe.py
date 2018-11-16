@@ -1,8 +1,6 @@
 import pygame
 import random
 
-done = False
-
 clock = pygame.time.Clock()
 
 BLACK = (0, 0, 0)
@@ -32,6 +30,7 @@ class Game:
         self.C1 = ""
         self.C2 = ""
         self.C3 = ""
+        self.done = False
 
         pygame.init()
 
@@ -40,16 +39,15 @@ class Game:
         pygame.display.set_caption("Tic Tac Toe")
 
     def run(self):
-        while not done:
+        while not self.done:
             self.event_loop()
         pygame.quit()
 
     def event_loop(self):
-        global done
         global clock
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                done = True
+                self.done = True
             elif event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 self.clickx = pos[0]
@@ -63,7 +61,7 @@ class Game:
                 self.window = "choice"
                 self.reset_clicks()
             if 250 <= self.clickx <= 650 and 300 <= self.clicky <= 400:
-                done = True
+                self.done = True
 
         #Symbol choice Menu Logic
         if self.window == "choice":
@@ -258,7 +256,6 @@ class Game:
         self.clicky = 0
 
     def process_post_game_menu(self):
-        global done
         if 250 <= self.clickx <= 650 and 250 <= self.clicky <= 350:
             self.window = "choice"
             self.reset_clicks()
@@ -274,7 +271,7 @@ class Game:
             self.turn = "player"
             self.playchoice = ""
         if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
-            done = True
+            self.done = True
 
     def display_post_game_menu(self, message, message_color):
         titlefont = pygame.font.Font(None, 56)
