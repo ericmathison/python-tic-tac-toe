@@ -51,26 +51,11 @@ class Game:
                 if self.window == "game":
                     self.turn = "comp"
 
-        #Main Menu Logic
         if self.window == "main":
-            if 250 <= self.clickx <= 650 and 150 <= self.clicky <= 250:
-                self.window = "choice"
-                self.reset_clicks()
-            if 250 <= self.clickx <= 650 and 300 <= self.clicky <= 400:
-                exit()
+            self.play_or_quit()
 
-        #Symbol choice Menu Logic
         if self.window == "choice":
-            if 200 <= self.clickx <= 300 and 300 <= self.clicky <= 400:
-                self.player = "X"
-                self.computer =  "O"
-                self.window = "game"
-                self.reset_clicks()
-            if 600 <= self.clickx <= 700 and 300 <= self.clicky <= 400:
-                self.player = "O"
-                self.computer = "X"
-                self.window = "game"
-                self.reset_clicks()
+            self.select_symbol()
 
         if self.window in ["win", "lose", "cats"]:
             self.process_post_game_menu()
@@ -89,7 +74,6 @@ class Game:
 
         self.computers_turn()
 
-        #Drawing code
         self.screen.fill(WHITE)
 
         if self.window == "main":
@@ -132,6 +116,25 @@ class Game:
         pygame.display.flip()
 
         clock.tick(60)
+
+    def play_or_quit(self):
+        if 250 <= self.clickx <= 650 and 150 <= self.clicky <= 250:
+            self.window = "choice"
+            self.reset_clicks()
+        if 250 <= self.clickx <= 650 and 300 <= self.clicky <= 400:
+            exit()
+
+    def select_symbol(self):
+        if 200 <= self.clickx <= 300 and 300 <= self.clicky <= 400:
+            self.player = "X"
+            self.computer =  "O"
+            self.window = "game"
+            self.reset_clicks()
+        if 600 <= self.clickx <= 700 and 300 <= self.clicky <= 400:
+            self.player = "O"
+            self.computer = "X"
+            self.window = "game"
+            self.reset_clicks()
 
     def check_for_win(self):
         winning_conditions = [
