@@ -232,10 +232,6 @@ class Game:
                 pygame.draw.line(self.screen, BLACK, coordinates[p][0], coordinates[p][1], 5)
                 pygame.draw.line(self.screen, BLACK, coordinates[p][2], coordinates[p][3], 5)
 
-        if self.C3 == "X":
-            pygame.draw.line(self.screen, BLACK, [600, 500], [700, 600], 5)
-            pygame.draw.line(self.screen, BLACK, [700, 500], [600, 600], 5)
-
     def draw_each_o(self):
         coordinates = {"A1": [200, 100, 100, 100], "A2": [400, 100, 100, 100],
                 "A3": [600, 100, 100, 100], "B1": [200, 300, 100, 100],
