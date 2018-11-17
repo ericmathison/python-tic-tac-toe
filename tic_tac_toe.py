@@ -10,14 +10,24 @@ RED = (255, 0, 0)
 class Game:
 
     def __init__(self):
+        self.initialize_game_state()
         self.window = "main"
         self.player = "X"
         self.computer = "O"
+        self.positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+        self.clock = pygame.time.Clock()
+
+        pygame.init()
+
+        size = (900, 700)
+        self.screen = pygame.display.set_mode(size)
+        pygame.display.set_caption("Tic Tac Toe")
+
+    def initialize_game_state(self):
         self.compmove = 0
         self.turn = "player"
         self.status = ""
-        self.clickx = 0
-        self.clicky = 0
+        self.reset_clicks()
         self.playchoice = ""
         self.A1 = ""
         self.A2 = ""
@@ -28,14 +38,6 @@ class Game:
         self.C1 = ""
         self.C2 = ""
         self.C3 = ""
-        self.positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
-        self.clock = pygame.time.Clock()
-
-        pygame.init()
-
-        size = (900, 700)
-        self.screen = pygame.display.set_mode(size)
-        pygame.display.set_caption("Tic Tac Toe")
 
     def run(self):
         while True:
@@ -236,20 +238,8 @@ class Game:
 
     def process_menu(self):
         if 250 <= self.clickx <= 650 and 250 <= self.clicky <= 350:
+            self.initialize_game_state()
             self.window = "choice"
-            self.reset_clicks()
-            self.A1 = ""
-            self.A2 = ""
-            self.A3 = ""
-            self.B1 = ""
-            self.B2 = ""
-            self.B3 = ""
-            self.C1 = ""
-            self.C2 = ""
-            self.C3 = ""
-            self.turn = "player"
-            self.playchoice = ""
-            self.status = ""
         if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
             exit()
 
