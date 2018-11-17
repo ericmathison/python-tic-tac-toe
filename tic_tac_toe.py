@@ -249,6 +249,7 @@ class Game:
             self.C3 = ""
             self.turn = "player"
             self.playchoice = ""
+            self.status = ""
         if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
             exit()
 
