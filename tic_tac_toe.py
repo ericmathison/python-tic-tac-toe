@@ -71,19 +71,19 @@ class Game:
         self.screen.fill(WHITE)
 
         if self.window == "main":
-            self.display_main_menu()
+            self.display_menu("Welcome to Daniel's Tic Tac Toe", "New Game", BLACK)
 
         if self.window == "choice":
             self.display_letter_choice_menu()
 
         if self.window == "win":
-            self.display_post_game_menu("You Won!", BLUE)
+            self.display_menu("You Won!", "Play Again", BLUE)
 
         if self.window == "lose":
-            self.display_post_game_menu("You lost...", RED)
+            self.display_menu("You lost...", "Play Again", RED)
 
         if self.window == "cats":
-            self.display_post_game_menu("Cat's Game!", GREEN)
+            self.display_menu("Cat's Game!", "Play Again", GREEN)
 
         if self.window == "game":
             gamefont = pygame.font.Font(None, 48)
@@ -112,10 +112,10 @@ class Game:
         self.clock.tick(60)
 
     def play_or_quit(self):
-        if 250 <= self.clickx <= 650 and 150 <= self.clicky <= 250:
+        if 250 <= self.clickx <= 650 and 250 <= self.clicky <= 350:
             self.window = "choice"
             self.reset_clicks()
-        if 250 <= self.clickx <= 650 and 300 <= self.clicky <= 400:
+        if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
             exit()
 
     def select_symbol(self):
@@ -269,34 +269,19 @@ class Game:
         if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
             exit()
 
-    def display_post_game_menu(self, message, message_color):
+    def display_menu(self, message, play_message, message_color):
         titlefont = pygame.font.Font(None, 56)
         title = titlefont.render(message, True, message_color)
-        pygame.time.delay(1000)
         menufont = pygame.font.Font(None, 48)
         self.screen.blit(title, [175, 100])
 
-        newgame = menufont.render("Play Again", True, BLACK)
+        newgame = menufont.render(play_message, True, BLACK)
         self.screen.blit(newgame, [365, 285])
         pygame.draw.rect(self.screen, BLACK, [250, 250, 400, 100], 2)
 
         quitgame = menufont.render("Quit Game", True, BLACK)
         self.screen.blit(quitgame, [365, 435])
         pygame.draw.rect(self.screen, BLACK, [250, 400, 400, 100], 2)
-
-    def display_main_menu(self):
-        titlefont = pygame.font.Font(None, 56)
-        menufont = pygame.font.Font(None, 48)
-        title = titlefont.render("Welcome to Daniel's Tic Tac Toe", True, BLACK)
-        self.screen.blit(title, [175, 50])
-        #New game Button
-        newgame = menufont.render("New Game", True, BLACK)
-        self.screen.blit(newgame, [365, 185])
-        pygame.draw.rect(self.screen, BLACK, [250, 150, 400, 100], 2)
-        #Quit Button
-        quitgame = menufont.render("Quit Game", True, BLACK)
-        self.screen.blit(quitgame, [365, 335])
-        pygame.draw.rect(self.screen, BLACK, [250, 300, 400, 100], 2)
 
     def display_letter_choice_menu(self):
         titlefont = pygame.font.Font(None, 56)
