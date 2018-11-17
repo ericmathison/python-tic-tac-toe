@@ -45,9 +45,7 @@ class Game:
         global clock
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP:
-                pos = pygame.mouse.get_pos()
-                self.clickx = pos[0]
-                self.clicky = pos[1]
+                self.clickx, self.clicky = pygame.mouse.get_pos()
                 if self.window == "game":
                     self.turn = "comp"
 
