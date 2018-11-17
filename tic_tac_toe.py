@@ -1,8 +1,6 @@
 import pygame
 import random
 
-clock = pygame.time.Clock()
-
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
@@ -30,6 +28,7 @@ class Game:
         self.C1 = ""
         self.C2 = ""
         self.C3 = ""
+        self.clock = pygame.time.Clock()
 
         pygame.init()
 
@@ -42,7 +41,6 @@ class Game:
             self.event_loop()
 
     def event_loop(self):
-        global clock
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP:
                 self.clickx, self.clicky = pygame.mouse.get_pos()
@@ -113,7 +111,7 @@ class Game:
 
         pygame.display.flip()
 
-        clock.tick(60)
+        self.clock.tick(60)
 
     def play_or_quit(self):
         if 250 <= self.clickx <= 650 and 150 <= self.clicky <= 250:
