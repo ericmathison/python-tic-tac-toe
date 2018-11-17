@@ -60,10 +60,7 @@ class Game:
         if self.window == "game":
             self.set_players_choice()
 
-        #<<Cats>>
-        if self.status != "won" and self.status != "lost" and self.A1 != "" and self.A2 != "" and self.A3 != "" and self.B1 != "" and self.B2 != "" and self.B3 != "" and self.C1 != "" and self.C2 != "" and self.C3 != "":
-            self.reset_clicks()
-            self.window = "cats"
+        self.check_for_cats_game()
 
         self.check_for_win()
 
@@ -132,6 +129,14 @@ class Game:
             self.computer = "X"
             self.window = "game"
             self.reset_clicks()
+
+    def check_for_cats_game(self):
+        for p in self.positions:
+            if getattr(self, p) == "":
+                return
+        if self.status not in ["won", "lost"]:
+            self.reset_clicks()
+            self.window = "cats"
 
     def check_for_win(self):
         winning_conditions = [
