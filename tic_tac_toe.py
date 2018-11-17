@@ -182,26 +182,25 @@ class Game:
             self.turn = "player"
 
     def check_for_loss(self):
-        if self.turn == "comp":
-            loose_scenarios = [
-                ["A1", ["A2", "A3"]], ["B1", ["B2", "B3"]], ["C1", ["C2", "C3"]],
-                ["A2", ["A1", "A3"]], ["B2", ["B1", "B3"]], ["C2", ["C1", "C3"]],
-                ["A3", ["A1", "A2"]], ["B3", ["B1", "B2"]], ["C3", ["C1", "C2"]],
-                ["A1", ["C1", "B1"]], ["A2", ["C2", "B2"]], ["A3", ["C3", "B3"]],
-                ["B1", ["A1", "C3"]], ["B2", ["A2", "C2"]], ["B3", ["A3", "C3"]],
-                ["C1", ["A1", "B1"]], ["C2", ["A2", "B2"]], ["C3", ["A3", "B3"]],
-                ["B2", ["A1", "C1"]], ["B2", ["A3", "C1"]], ["C3", ["A1", "B2"]],
-                ["A3", ["C1", "B2"]], ["C1", ["A3", "B2"]], ["A1", ["C3", "B2"]]
-            ]
+        loose_scenarios = [
+            ["A1", ["A2", "A3"]], ["B1", ["B2", "B3"]], ["C1", ["C2", "C3"]],
+            ["A2", ["A1", "A3"]], ["B2", ["B1", "B3"]], ["C2", ["C1", "C3"]],
+            ["A3", ["A1", "A2"]], ["B3", ["B1", "B2"]], ["C3", ["C1", "C2"]],
+            ["A1", ["C1", "B1"]], ["A2", ["C2", "B2"]], ["A3", ["C3", "B3"]],
+            ["B1", ["A1", "C3"]], ["B2", ["A2", "C2"]], ["B3", ["A3", "C3"]],
+            ["C1", ["A1", "B1"]], ["C2", ["A2", "B2"]], ["C3", ["A3", "B3"]],
+            ["B2", ["A1", "C1"]], ["B2", ["A3", "C1"]], ["C3", ["A1", "B2"]],
+            ["A3", ["C1", "B2"]], ["C1", ["A3", "B2"]], ["A1", ["C3", "B2"]]
+        ]
 
-            for scenario in loose_scenarios:
-                first_position = getattr(self, scenario[1][0])
-                second_position = getattr(self, scenario[1][1])
-                computers_move = getattr(self, scenario[0])
-                if computers_move == "" and first_position == second_position == self.computer:
-                    self.reset_clicks()
-                    self.status = "lost"
-                    self.turn = "player"
+        for scenario in loose_scenarios:
+            first_position = getattr(self, scenario[1][0])
+            second_position = getattr(self, scenario[1][1])
+            computers_move = getattr(self, scenario[0])
+            if computers_move == "" and first_position == second_position == self.computer:
+                self.reset_clicks()
+                self.status = "lost"
+                self.turn = "player"
 
     def computers_turn(self):
         self.compmove = random.randint(0, 8)
