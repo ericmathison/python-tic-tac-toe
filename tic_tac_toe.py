@@ -155,7 +155,7 @@ class Game:
 
         for cond in winning_conditions:
             if (getattr(self, cond[0]) == getattr(self, cond[1]) ==
-            getattr(self, cond[2]) == self.player):
+                    getattr(self, cond[2]) == self.player):
                 self.reset_clicks()
                 self.status = "won"
                 return
