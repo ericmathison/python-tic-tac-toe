@@ -218,19 +218,22 @@ class Game:
                 self.draw_x(coordinates[p][0], coordinates[p][1])
 
     def draw_each_o(self):
-        coordinates = {"A1": [200, 100, 100, 100], "A2": [400, 100, 100, 100],
-                "A3": [600, 100, 100, 100], "B1": [200, 300, 100, 100],
-                "B2": [400, 300, 100, 100], "B3": [600, 300, 100, 100],
-                "C1": [200, 500, 100, 100], "C2": [400, 500, 100, 100],
-                "C3": [600, 500, 100, 100]}
+        coordinates = {
+                "A1": [200, 100], "A2": [400, 100], "A3": [600, 100], 
+                "B1": [200, 300], "B2": [400, 300], "B3": [600, 300],
+                "C1": [200, 500], "C2": [400, 500], "C3": [600, 500]
+            }
 
         for p in self.positions:
             if getattr(self, p) == "O":
-                pygame.draw.ellipse(self.screen, RED, coordinates[p], 4)
+                self.draw_o(coordinates[p][0], coordinates[p][1])
 
     def draw_x(self, top_left_x, top_left_y):
         pygame.draw.line(self.screen, BLACK, [top_left_x, top_left_y], [top_left_x + 100, top_left_y + 100], 5)
         pygame.draw.line(self.screen, BLACK, [top_left_x + 100, top_left_y], [top_left_x, top_left_y + 100], 5)
+
+    def draw_o(self, top_left_x, top_left_y):
+        pygame.draw.ellipse(self.screen, RED, [top_left_x, top_left_y, 100, 100], 4)
 
     def reset_clicks(self):
         self.clickx = 0
