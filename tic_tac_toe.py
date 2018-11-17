@@ -48,14 +48,11 @@ class Game:
                 if self.window == "game":
                     self.turn = "comp"
 
-        if self.window == "main":
-            self.play_or_quit()
-
         if self.window == "choice":
             self.select_symbol()
 
-        if self.window in ["win", "lose", "cats"]:
-            self.process_post_game_menu()
+        if self.window in ["main", "win", "lose", "cats"]:
+            self.process_menu()
 
         if self.window == "game":
             self.set_players_choice()
@@ -110,13 +107,6 @@ class Game:
         pygame.display.flip()
 
         self.clock.tick(60)
-
-    def play_or_quit(self):
-        if 250 <= self.clickx <= 650 and 250 <= self.clicky <= 350:
-            self.window = "choice"
-            self.reset_clicks()
-        if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
-            exit()
 
     def select_symbol(self):
         if 200 <= self.clickx <= 300 and 300 <= self.clicky <= 400:
@@ -244,7 +234,7 @@ class Game:
         self.clickx = 0
         self.clicky = 0
 
-    def process_post_game_menu(self):
+    def process_menu(self):
         if 250 <= self.clickx <= 650 and 250 <= self.clicky <= 350:
             self.window = "choice"
             self.reset_clicks()
