@@ -71,7 +71,8 @@ class Game:
 
         setattr(self, self.playchoice, self.player)
 
-        self.computers_turn()
+        if self.turn == "comp":
+            self.computers_turn()
 
         self.screen.fill(WHITE)
 
@@ -158,23 +159,22 @@ class Game:
                 return
 
     def try_preventing_win(self):
-        if self.turn == "comp":
-            preventable_wins = [["A2", "A3", "A1"], ["B2", "B3", "B1"],
-                ["C2", "C3", "C1"], ["A1", "A3", "A2"], ["B1", "B3", "B2"],
-                ["C1", "C3", "C2"], ["A1", "A2", "A3"], ["B1", "B2", "B3"],
-                ["C1", "C2", "C3"], ["C1", "B1", "A1"], ["C2", "B2", "A2"],
-                ["C3", "B3", "A3"], ["A1", "C3", "B1"], ["A2", "C2", "B2"],
-                ["A3", "C3", "B3"], ["A1", "B1", "C1"], ["A2", "B2", "C2"],
-                ["A3", "B3", "C3"], ["A1", "C3", "B2"], ["A3", "C1", "B2"],
-                ["A1", "B2", "C3"], ["C1", "B2", "A3"], ["A3", "B2", "C1"],
-                ["C3", "B2", "A1"], ["A1", "C1", "B1"]]
+        preventable_wins = [["A2", "A3", "A1"], ["B2", "B3", "B1"],
+            ["C2", "C3", "C1"], ["A1", "A3", "A2"], ["B1", "B3", "B2"],
+            ["C1", "C3", "C2"], ["A1", "A2", "A3"], ["B1", "B2", "B3"],
+            ["C1", "C2", "C3"], ["C1", "B1", "A1"], ["C2", "B2", "A2"],
+            ["C3", "B3", "A3"], ["A1", "C3", "B1"], ["A2", "C2", "B2"],
+            ["A3", "C3", "B3"], ["A1", "B1", "C1"], ["A2", "B2", "C2"],
+            ["A3", "B3", "C3"], ["A1", "C3", "B2"], ["A3", "C1", "B2"],
+            ["A1", "B2", "C3"], ["C1", "B2", "A3"], ["A3", "B2", "C1"],
+            ["C3", "B2", "A1"], ["A1", "C1", "B1"]]
 
-            for position in preventable_wins:
-                if (getattr(self, position[0]) == getattr(self, position[1]) == self.player and
-                    getattr(self, position[2]) == ""):
-                        setattr(self, position[2], self.computer)
-                        self.turn = "player"
-                        return
+        for position in preventable_wins:
+            if (getattr(self, position[0]) == getattr(self, position[1]) == self.player and
+                getattr(self, position[2]) == ""):
+                    setattr(self, position[2], self.computer)
+                    self.turn = "player"
+                    return
 
     def make_random_computer_move(self):
         if getattr(self, self.positions[self.compmove]) == "" and self.turn == "comp":
@@ -204,12 +204,10 @@ class Game:
                     self.turn = "player"
 
     def computers_turn(self):
-        if self.turn == "comp":
-            self.compmove = random.randint(0, 8)
-
-            self.check_for_loss()
-            self.try_preventing_win()
-            self.make_random_computer_move()
+        self.compmove = random.randint(0, 8)
+        self.check_for_loss()
+        self.try_preventing_win()
+        self.make_random_computer_move()
 
     def draw_letters(self):
         for p in self.positions:
