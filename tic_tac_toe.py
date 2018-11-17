@@ -28,6 +28,7 @@ class Game:
         self.C1 = ""
         self.C2 = ""
         self.C3 = ""
+        self.positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
         self.clock = pygame.time.Clock()
 
         pygame.init()
@@ -174,9 +175,8 @@ class Game:
                         return
 
     def make_random_computer_move(self):
-        positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
-        if getattr(self, positions[self.compmove]) == "" and self.turn == "comp":
-            setattr(self, positions[self.compmove], self.computer)
+        if getattr(self, self.positions[self.compmove]) == "" and self.turn == "comp":
+            setattr(self, self.positions[self.compmove], self.computer)
             self.turn = "player"
 
     def check_for_loss(self):
@@ -222,9 +222,7 @@ class Game:
                 "C3": [[600, 500], [700, 600], [700, 500], [600, 600]]
             }
 
-        positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
-
-        for p in positions:
+        for p in self.positions:
             if getattr(self, p) == "X":
                 pygame.draw.line(self.screen, BLACK, coordinates[p][0], coordinates[p][1], 5)
                 pygame.draw.line(self.screen, BLACK, coordinates[p][2], coordinates[p][3], 5)
@@ -240,9 +238,7 @@ class Game:
                 "C1": [200, 500, 100, 100], "C2": [400, 500, 100, 100],
                 "C3": [600, 500, 100, 100]}
 
-        positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
-
-        for p in positions:
+        for p in self.positions:
             if getattr(self, p) == "O":
                 pygame.draw.ellipse(self.screen, RED, coordinates[p], 4)
 
