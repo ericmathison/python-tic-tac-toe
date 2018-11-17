@@ -15,6 +15,12 @@ class Game:
         self.player = "X"
         self.computer = "O"
         self.positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+        self.letter_coordinates = {
+                "A1": [200, 100], "A2": [400, 100], "A3": [600, 100],
+                "B1": [200, 300], "B2": [400, 300], "B3": [600, 300],
+                "C1": [200, 500], "C2": [400, 500], "C3": [600, 500]
+            }
+
         self.clock = pygame.time.Clock()
 
         pygame.init()
@@ -96,8 +102,7 @@ class Game:
             pygame.draw.line(self.screen, BLACK, [350, 50], [350, 650], 5)
             pygame.draw.line(self.screen, BLACK, [550, 50], [550, 650], 5)
 
-            self.draw_each_x()
-            self.draw_each_o()
+            self.draw_letters()
 
             if self.status == "lost":
                 self.window = "lose"
@@ -206,27 +211,12 @@ class Game:
             self.try_preventing_win()
             self.make_random_computer_move()
 
-    def draw_each_x(self):
-        coordinates = {
-                "A1": [200, 100], "A2": [400, 100], "A3": [600, 100],
-                "B1": [200, 300], "B2": [400, 300], "B3": [600, 300],
-                "C1": [200, 500], "C2": [400, 500], "C3": [600, 500]
-            }
-
+    def draw_letters(self):
         for p in self.positions:
             if getattr(self, p) == "X":
-                self.draw_x(coordinates[p][0], coordinates[p][1])
-
-    def draw_each_o(self):
-        coordinates = {
-                "A1": [200, 100], "A2": [400, 100], "A3": [600, 100], 
-                "B1": [200, 300], "B2": [400, 300], "B3": [600, 300],
-                "C1": [200, 500], "C2": [400, 500], "C3": [600, 500]
-            }
-
-        for p in self.positions:
+                self.draw_x(self.letter_coordinates[p][0], self.letter_coordinates[p][1])
             if getattr(self, p) == "O":
-                self.draw_o(coordinates[p][0], coordinates[p][1])
+                self.draw_o(self.letter_coordinates[p][0], self.letter_coordinates[p][1])
 
     def draw_x(self, top_left_x, top_left_y):
         pygame.draw.line(self.screen, BLACK, [top_left_x, top_left_y], [top_left_x + 100, top_left_y + 100], 5)
