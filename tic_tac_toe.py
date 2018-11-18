@@ -257,23 +257,22 @@ class Game:
         pygame.draw.ellipse(self.screen, RED, [600, 300, 100, 100], 4)
 
     def get_position_from_click_coordinates(self):
-        column = ""
-        if 150 < self.clickx < 350:
-            column = "1"
-        elif 350 < self.clickx < 550:
-            column = "2"
-        elif 550 < self.clickx < 750:
-            column = "3"
-
-        row = ""
+        position = ""
         if 50 < self.clicky < 250:
-            row = "A"
+            position += "A"
         elif 250 < self.clicky < 450:
-            row = "B"
+            position += "B"
         elif 450 < self.clicky < 650:
-            row = "C"
+            position += "C"
 
-        return row + column
+        if 150 < self.clickx < 350:
+            position += "1"
+        elif 350 < self.clickx < 550:
+            position += "2"
+        elif 550 < self.clickx < 750:
+            position += "3"
+
+        return position
 
     def set_players_choice(self):
         self.playchoice = self.get_position_from_click_coordinates()
