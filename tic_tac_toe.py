@@ -78,10 +78,8 @@ class Game:
 
             if self.status == "lost":
                 self.window = "lose"
-                self.status = ""
             if self.status == "won":
                 self.window = "win"
-                self.status = ""
 
 
         self.check_for_cats_game()
