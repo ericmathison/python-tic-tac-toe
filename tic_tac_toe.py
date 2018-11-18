@@ -56,7 +56,10 @@ class Game:
                 if self.window == "game":
                     self.turn = "comp"
 
+        self.screen.fill(WHITE)
+
         if self.window == "choice":
+            self.display_letter_choice_menu()
             self.select_symbol()
 
         if self.window in ["main", "win", "lose", "cats"]:
@@ -74,13 +77,8 @@ class Game:
         if self.turn == "comp":
             self.computers_turn()
 
-        self.screen.fill(WHITE)
-
         if self.window == "main":
             self.display_menu("Welcome to Daniel's Tic Tac Toe", "New Game", BLACK)
-
-        if self.window == "choice":
-            self.display_letter_choice_menu()
 
         if self.window == "win":
             self.display_menu("You Won!", "Play Again", BLUE)
