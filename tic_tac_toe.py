@@ -67,6 +67,26 @@ class Game:
 
         if self.window == "game":
             self.set_players_choice()
+            gamefont = pygame.font.Font(None, 48)
+            game_text = gamefont.render("Player is: " + self.player, True, BLACK)
+            self.screen.blit(game_text, [350, 5])
+            turn_text = gamefont.render("It's your turn...", True, BLACK)
+            self.screen.blit(turn_text, [350, 655])
+
+            pygame.draw.line(self.screen, BLACK, [150, 250], [750, 250], 5)
+            pygame.draw.line(self.screen, BLACK, [150, 450], [750, 450], 5)
+            pygame.draw.line(self.screen, BLACK, [350, 50], [350, 650], 5)
+            pygame.draw.line(self.screen, BLACK, [550, 50], [550, 650], 5)
+
+            self.draw_letters()
+
+            if self.status == "lost":
+                self.window = "lose"
+                self.status = ""
+            if self.status == "won":
+                self.window = "win"
+                self.status = ""
+
 
         self.check_for_cats_game()
 
@@ -88,27 +108,6 @@ class Game:
 
         if self.window == "cats":
             self.display_menu("Cat's Game!", "Play Again", GREEN)
-
-        if self.window == "game":
-            gamefont = pygame.font.Font(None, 48)
-            game_text = gamefont.render("Player is: " + self.player, True, BLACK)
-            self.screen.blit(game_text, [350, 5])
-            turn_text = gamefont.render("It's your turn...", True, BLACK)
-            self.screen.blit(turn_text, [350, 655])
-
-            pygame.draw.line(self.screen, BLACK, [150, 250], [750, 250], 5)
-            pygame.draw.line(self.screen, BLACK, [150, 450], [750, 450], 5)
-            pygame.draw.line(self.screen, BLACK, [350, 50], [350, 650], 5)
-            pygame.draw.line(self.screen, BLACK, [550, 50], [550, 650], 5)
-
-            self.draw_letters()
-
-            if self.status == "lost":
-                self.window = "lose"
-                self.status = ""
-            if self.status == "won":
-                self.window = "win"
-                self.status = ""
 
         pygame.display.flip()
 
