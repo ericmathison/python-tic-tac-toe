@@ -73,7 +73,7 @@ class Game:
                           [[350, 50],  [350, 650]], [[550, 50],  [550, 650]]]:
                 pygame.draw.line(self.screen, BLACK, coord[0], coord[1], 5)
 
-            self.draw_letters()
+            self.draw_all_letters()
 
             if self.status == "lost":
                 self.window = "lose"
@@ -198,19 +198,16 @@ class Game:
         self.try_preventing_win()
         self.make_random_computer_move()
 
-    def draw_letters(self):
-        for p in self.positions:
-            if getattr(self, p) == "X":
-                self.draw_x(self.letter_coordinates[p][0], self.letter_coordinates[p][1])
-            if getattr(self, p) == "O":
-                self.draw_o(self.letter_coordinates[p][0], self.letter_coordinates[p][1])
+    def draw_all_letters(self):
+        for pos in self.positions:
+            self.draw_letter(getattr(self, pos), self.letter_coordinates[p][0], self.letter_coordinates[p][1])
 
-    def draw_x(self, top_left_x, top_left_y):
-        pygame.draw.line(self.screen, BLACK, [top_left_x, top_left_y], [top_left_x + 100, top_left_y + 100], 5)
-        pygame.draw.line(self.screen, BLACK, [top_left_x + 100, top_left_y], [top_left_x, top_left_y + 100], 5)
-
-    def draw_o(self, top_left_x, top_left_y):
-        pygame.draw.ellipse(self.screen, RED, [top_left_x, top_left_y, 100, 100], 4)
+    def draw_letter(self, letter, top_left_x, top_left_y):
+        if letter == "X":
+            pygame.draw.line(self.screen, BLACK, [top_left_x, top_left_y], [top_left_x + 100, top_left_y + 100], 5)
+            pygame.draw.line(self.screen, BLACK, [top_left_x + 100, top_left_y], [top_left_x, top_left_y + 100], 5)
+        elif letter == "O":
+            pygame.draw.ellipse(self.screen, RED, [top_left_x, top_left_y, 100, 100], 4)
 
     def reset_clicks(self):
         self.clickx = 0
