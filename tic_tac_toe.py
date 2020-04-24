@@ -85,7 +85,7 @@ class Game:
 
         self.check_for_win()
 
-        setattr(self, self.playchoice, self.player)
+        self.move(self.playchoice, self.player)
 
         if self.turn == "comp":
             self.computers_turn()
@@ -163,14 +163,17 @@ class Game:
         for position in preventable_wins:
             if (getattr(self, position[0]) == getattr(self, position[1]) == self.player and
                 getattr(self, position[2]) == ""):
-                    setattr(self, position[2], self.computer)
+                    self.move(position[2], self.computer)
                     self.turn = "player"
                     return
 
     def make_random_computer_move(self):
         if getattr(self, self.positions[self.compmove]) == "" and self.turn == "comp":
-            setattr(self, self.positions[self.compmove], self.computer)
+            self.move(self.positions[self.compmove], self.computer)
             self.turn = "player"
+
+    def move(self, position, piece):
+        setattr(self, position, piece)
 
     def check_for_loss(self):
         loose_scenarios = [
