@@ -179,18 +179,16 @@ class Game:
             ["A3", "C1", "B2"], ["C1", "A3", "B2"], ["A1", "C3", "B2"]]
 
         for scenario in loose_scenarios:
-            computers_move = getattr(self, scenario[0])
-            first_position = getattr(self, scenario[1])
-            second_position = getattr(self, scenario[2])
-            if computers_move == "" and first_position == second_position == self.computer:
+            if (getattr(self, scenario[0]) == getattr(self, scenario[1]) ==
+                getattr(self, scenario[2]) == self.computer):
                 self.reset_clicks()
                 self.status = "lost"
                 self.turn = "player"
 
     def computers_turn(self):
-        self.check_for_loss()
         self.try_preventing_win()
         self.make_random_computer_move()
+        self.check_for_loss()
 
     def draw_all_letters(self):
         for pos in self.positions:
