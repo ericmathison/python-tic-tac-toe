@@ -200,7 +200,7 @@ class Game:
 
     def draw_all_letters(self):
         for pos in self.positions:
-            self.draw_letter(getattr(self, pos), self.letter_coordinates[p][0], self.letter_coordinates[p][1])
+            self.draw_letter(getattr(self, pos), self.letter_coordinates[pos][0], self.letter_coordinates[pos][1])
 
     def draw_letter(self, letter, top_left_x, top_left_y):
         if letter == "X":
