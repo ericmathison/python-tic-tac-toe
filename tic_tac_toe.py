@@ -26,7 +26,6 @@ class Game:
         pygame.display.set_caption("Tic Tac Toe")
 
     def initialize_game_state(self):
-        self.compmove = 0
         self.turn = "player"
         self.status = ""
         self.reset_clicks()
@@ -160,8 +159,9 @@ class Game:
                     return
 
     def make_random_computer_move(self):
-        if getattr(self, self.positions[self.compmove]) == "" and self.turn == "comp":
-            self.move(self.positions[self.compmove], self.computer)
+        rand = random.randint(0, 8)
+        if getattr(self, self.positions[rand]) == "" and self.turn == "comp":
+            self.move(self.positions[rand], self.computer)
             self.turn = "player"
 
     def move(self, position, piece):
@@ -188,7 +188,6 @@ class Game:
                 self.turn = "player"
 
     def computers_turn(self):
-        self.compmove = random.randint(0, 8)
         self.check_for_loss()
         self.try_preventing_win()
         self.make_random_computer_move()
