@@ -16,6 +16,10 @@ class Game:
                 "B1": [200, 300], "B2": [400, 300], "B3": [600, 300],
                 "C1": [200, 500], "C2": [400, 500], "C3": [600, 500]
             }
+        self.possible_wins = [
+            ["A1", "A2", "A3"], ["B1", "B2", "B3"], ["C1", "C2", "C3"],
+            ["A1", "B1", "C1"], ["A2", "B2", "C2"], ["A3", "B3", "C3"],
+            ["A1", "B2", "C3"], ["A3", "B2", "C1"]]
 
         self.clock = pygame.time.Clock()
 
@@ -126,13 +130,7 @@ class Game:
             self.window = "cats"
 
     def check_for_win(self):
-        winning_conditions = [
-            ["A1", "A2", "A3"], ["B1", "B2", "B3"],
-            ["C1", "C2", "C3"], ["A1", "B1", "C1"],
-            ["A2", "B2", "C2"], ["A3", "B3", "C3"],
-            ["A1", "B2", "C3"], ["A3", "B2", "C1"]]
-
-        for cond in winning_conditions:
+        for cond in self.possible_wins:
             if (getattr(self, cond[0]) == getattr(self, cond[1]) ==
                     getattr(self, cond[2]) == self.player):
                 self.reset_clicks()
@@ -168,17 +166,7 @@ class Game:
         setattr(self, position, piece)
 
     def check_for_loss(self):
-        loose_scenarios = [
-            ["A1", "A2", "A3"], ["B1", "B2", "B3"], ["C1", "C2", "C3"],
-            ["A2", "A1", "A3"], ["B2", "B1", "B3"], ["C2", "C1", "C3"],
-            ["A3", "A1", "A2"], ["B3", "B1", "B2"], ["C3", "C1", "C2"],
-            ["A1", "C1", "B1"], ["A2", "C2", "B2"], ["A3", "C3", "B3"],
-            ["B1", "A1", "C3"], ["B2", "A2", "C2"], ["B3", "A3", "C3"],
-            ["C1", "A1", "B1"], ["C2", "A2", "B2"], ["C3", "A3", "B3"],
-            ["B2", "A1", "C1"], ["B2", "A3", "C1"], ["C3", "A1", "B2"],
-            ["A3", "C1", "B2"], ["C1", "A3", "B2"], ["A1", "C3", "B2"]]
-
-        for scenario in loose_scenarios:
+        for scenario in self.possible_wins:
             if (getattr(self, scenario[0]) == getattr(self, scenario[1]) ==
                 getattr(self, scenario[2]) == self.computer):
                 self.reset_clicks()
