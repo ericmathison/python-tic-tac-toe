@@ -10,16 +10,10 @@ class Game:
         self.window = "main"
         self.player = "X"
         self.computer = "O"
-        self.positions = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
-        self.letter_coordinates = {
-                "A1": [200, 100], "A2": [400, 100], "A3": [600, 100],
-                "B1": [200, 300], "B2": [400, 300], "B3": [600, 300],
-                "C1": [200, 500], "C2": [400, 500], "C3": [600, 500]
-            }
-        self.possible_wins = [
-            ["A1", "A2", "A3"], ["B1", "B2", "B3"], ["C1", "C2", "C3"],
-            ["A1", "B1", "C1"], ["A2", "B2", "C2"], ["A3", "B3", "C3"],
-            ["A1", "B2", "C3"], ["A3", "B2", "C1"]]
+        self.letter_coordinates = [[200, 100], [400, 100], [600, 100],
+            [200, 300], [400, 300], [600, 300], [200, 500], [400, 500], [600, 500]]
+        self.possible_wins = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7],
+            [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
         self.clock = pygame.time.Clock()
 
         pygame.init()
@@ -32,15 +26,7 @@ class Game:
         self.status = ""
         self.reset_clicks()
         self.playchoice = ""
-        self.A1 = ""
-        self.A2 = ""
-        self.A3 = ""
-        self.B1 = ""
-        self.B2 = ""
-        self.B3 = ""
-        self.C1 = ""
-        self.C2 = ""
-        self.C3 = ""
+        self.state = "---------"
 
     def run(self):
         while True:
@@ -70,9 +56,9 @@ class Game:
             turn_text = gamefont.render("It's your turn...", True, BLACK)
             self.screen.blit(turn_text, [350, 655])
 
-            for coord in [[[150, 250], [750, 250]], [[150, 450], [750, 450]],
+            for x, y in [[[150, 250], [750, 250]], [[150, 450], [750, 450]],
                           [[350, 50],  [350, 650]], [[550, 50],  [550, 650]]]:
-                pygame.draw.line(self.screen, BLACK, coord[0], coord[1], 5)
+                pygame.draw.line(self.screen, BLACK, x, y, 5)
 
             self.draw_all_letters()
 
@@ -86,7 +72,8 @@ class Game:
 
         self.check_for_win()
 
-        self.move(self.playchoice, self.player)
+        if self.playchoice != '':
+            self.move(self.playchoice, self.player)
 
         if self.turn == "comp":
             self.computers_turn()
@@ -120,56 +107,50 @@ class Game:
             self.reset_clicks()
 
     def check_for_cats_game(self):
-        for p in self.positions:
-            if getattr(self, p) == "":
+        for char in self.state:
+            if char == '-':
                 return
         if self.status not in ["won", "lost"]:
             self.reset_clicks()
             self.window = "cats"
 
     def check_for_win(self):
-        for cond in self.possible_wins:
-            if (getattr(self, cond[0]) == getattr(self, cond[1]) ==
-                    getattr(self, cond[2]) == self.player):
+        for first, second, third in self.possible_wins:
+            if (self.state[first - 1] == self.state[second - 1] ==
+                self.state[third - 1] == self.player):
+                    self.reset_clicks()
+                    self.status = "won"
+                    return
+
+    def check_for_loss(self):
+        for first, second, third in self.possible_wins:
+            if (self.state[first - 1] == self.state[second - 1] ==
+                self.state[third - 1] == self.computer):
                 self.reset_clicks()
-                self.status = "won"
-                return
+                self.status = "lost"
+                self.turn = "player"
 
     def try_preventing_win(self):
         preventable_wins = [
-            ["A2", "A3", "A1"], ["B2", "B3", "B1"], ["C2", "C3", "C1"],
-            ["A1", "A3", "A2"], ["B1", "B3", "B2"], ["C1", "C3", "C2"],
-            ["A1", "A2", "A3"], ["B1", "B2", "B3"], ["C1", "C2", "C3"],
-            ["C1", "B1", "A1"], ["C2", "B2", "A2"], ["C3", "B3", "A3"],
-            ["A1", "C3", "B2"], ["A2", "C2", "B2"], ["A3", "C3", "B3"],
-            ["A1", "B1", "C1"], ["A2", "B2", "C2"], ["A3", "B3", "C3"],
-            ["A1", "C3", "B2"], ["A3", "C1", "B2"], ["A1", "B2", "C3"],
-            ["C1", "B2", "A3"], ["A3", "B2", "C1"], ["C3", "B2", "A1"],
-            ["A1", "C1", "B1"]]
+            [2, 3, 1], [5, 6, 4], [8, 9, 7], [1, 3, 2], [4, 6, 5], [7, 9, 8],
+            [1, 2, 3], [4, 5, 6], [7, 8, 9], [7, 4, 1], [8, 5, 2], [9, 6, 3],
+            [1, 9, 5], [2, 8, 5], [3, 9, 6], [1, 4, 7], [2, 5, 8], [3, 6, 9],
+            [3, 7, 5], [1, 5, 9], [7, 5, 3], [3, 5, 7], [9, 5, 1], [1, 7, 4]]
 
-        for position in preventable_wins:
-            if (getattr(self, position[0]) == getattr(self, position[1]) == self.player and
-                getattr(self, position[2]) == ""):
-                    self.move(position[2], self.computer)
+        for first, second, third in preventable_wins:
+            if (self.state[first - 1] == self.state[second - 1] == self.player and self.state[third - 1] == "-"):
+                    self.move(third, self.computer)
                     self.turn = "player"
                     return
 
     def make_random_computer_move(self):
         rand = random.randint(0, 8)
-        if getattr(self, self.positions[rand]) == "" and self.turn == "comp":
-            self.move(self.positions[rand], self.computer)
+        if self.state[rand] == "-" and self.turn == "comp":
+            self.move(rand + 1, self.computer)
             self.turn = "player"
 
     def move(self, position, piece):
-        setattr(self, position, piece)
-
-    def check_for_loss(self):
-        for scenario in self.possible_wins:
-            if (getattr(self, scenario[0]) == getattr(self, scenario[1]) ==
-                getattr(self, scenario[2]) == self.computer):
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
+        self.state = self.state[:position - 1] + piece + self.state[position:]
 
     def computers_turn(self):
         self.try_preventing_win()
@@ -177,8 +158,8 @@ class Game:
         self.check_for_loss()
 
     def draw_all_letters(self):
-        for pos in self.positions:
-            self.draw_letter(getattr(self, pos), self.letter_coordinates[pos][0], self.letter_coordinates[pos][1])
+        for i in range(9):
+            self.draw_letter(self.state[i], self.letter_coordinates[i][0], self.letter_coordinates[i][1])
 
     def draw_letter(self, letter, top_left_x, top_left_y):
         if letter == "X":
@@ -224,26 +205,16 @@ class Game:
         pygame.draw.rect(self.screen, BLACK, [575, 275, 150, 150], 2)
         pygame.draw.ellipse(self.screen, RED, [600, 300, 100, 100], 4)
 
-    def get_position_from_click_coordinates(self):
-        position = ""
-        if 50 < self.clicky < 250:
-            position += "A"
-        elif 250 < self.clicky < 450:
-            position += "B"
-        elif 450 < self.clicky < 650:
-            position += "C"
-
-        if 150 < self.clickx < 350:
-            position += "1"
-        elif 350 < self.clickx < 550:
-            position += "2"
-        elif 550 < self.clickx < 750:
-            position += "3"
-
-        return position
+    def get_position_from_click(self):
+        coordinates = [[x, y] for y in [50, 250, 450] for x in [150, 350, 550]]
+        for (index, (x, y)) in enumerate(coordinates):
+            if x < self.clickx < x + 200 and y < self.clicky < y + 200:
+                return index + 1
 
     def set_players_choice(self):
-        self.playchoice = self.get_position_from_click_coordinates()
+        position = self.get_position_from_click()
+        if isinstance(position, int):
+            self.playchoice = position
 
 game = Game()
 game.run()
