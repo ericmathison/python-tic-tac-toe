@@ -92,7 +92,7 @@ class Game:
 
         pygame.display.flip()
 
-        self.clock.tick(60)
+        self.clock.tick(30)
 
     def select_symbol(self):
         if 200 <= self.clickx <= 300 and 300 <= self.clicky <= 400:
