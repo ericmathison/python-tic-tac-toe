@@ -64,6 +64,8 @@ class Game:
                 self.window = "lose"
             if self.status == "won":
                 self.window = "win"
+            if self.status == "cats":
+                self.window = "cats"
 
         self.check_for_cats_game()
 
@@ -109,7 +111,7 @@ class Game:
                 return
         if self.status not in ["won", "lost"]:
             self.reset_clicks()
-            self.window = "cats"
+            self.status = "cats"
 
     def check_for_win(self):
         for first, second, third in self.possible_wins:
