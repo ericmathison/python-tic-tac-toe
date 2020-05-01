@@ -21,7 +21,6 @@ class Game:
 
     def initialize_game_state(self):
         self.turn = "player"
-        self.status = ""
         self.reset_clicks()
         self.playchoice = ""
         self.state = "---------"
@@ -60,16 +59,12 @@ class Game:
 
             self.draw_all_letters()
 
-            if self.status == "lost":
+            if self.status() == "lost":
                 self.window = "lose"
-            if self.status == "won":
+            if self.status() == "won":
                 self.window = "win"
-            if self.status == "cats":
+            if self.status() == "cats":
                 self.window = "cats"
-
-        self.check_for_cats_game()
-
-        self.check_for_win()
 
         if self.playchoice != '':
             self.move(self.playchoice, self.player)
@@ -93,6 +88,28 @@ class Game:
 
         self.clock.tick(30)
 
+    def status(self):
+        if self.is_winner(self.player):
+            return "won"
+        elif self.is_winner(self.computer):
+            return "lost"
+        elif self.is_game_over():
+            return "cats"
+        else:
+            return "unfinished"
+
+    def is_game_over(self):
+        for char in self.state:
+            if char == '-':
+                return False
+        return True
+
+    def is_winner(self, contestant):
+        for first, second, third in self.possible_wins:
+            if (self.state[first - 1] == self.state[second - 1] ==
+                self.state[third - 1] == contestant):
+                return True
+
     def select_symbol(self):
         if 200 <= self.clickx <= 300 and 300 <= self.clicky <= 400:
             self.player = "X"
@@ -104,30 +121,6 @@ class Game:
             self.computer = "X"
             self.window = "game"
             self.reset_clicks()
-
-    def check_for_cats_game(self):
-        for char in self.state:
-            if char == '-':
-                return
-        if self.status not in ["won", "lost"]:
-            self.reset_clicks()
-            self.status = "cats"
-
-    def check_for_win(self):
-        for first, second, third in self.possible_wins:
-            if (self.state[first - 1] == self.state[second - 1] ==
-                self.state[third - 1] == self.player):
-                    self.reset_clicks()
-                    self.status = "won"
-                    return
-
-    def check_for_loss(self):
-        for first, second, third in self.possible_wins:
-            if (self.state[first - 1] == self.state[second - 1] ==
-                self.state[third - 1] == self.computer):
-                self.reset_clicks()
-                self.status = "lost"
-                self.turn = "player"
 
     def try_preventing_win(self):
         preventable_wins = [
@@ -143,10 +136,13 @@ class Game:
                     return
 
     def make_random_computer_move(self):
-        rand = random.randint(0, 8)
-        if self.state[rand] == "-" and self.turn == "comp":
-            self.move(rand + 1, self.computer)
-            self.turn = "player"
+        if self.turn == "comp":
+            rand_list = random.sample(list(range(0, 9)), 9)
+            for n in rand_list:
+                if self.state[n] == "-":
+                    self.move(n + 1, self.computer)
+                    self.turn = "player"
+                    return
 
     def move(self, position, piece):
         self.state = self.state[:position - 1] + piece + self.state[position:]
@@ -154,7 +150,9 @@ class Game:
     def computers_turn(self):
         self.try_preventing_win()
         self.make_random_computer_move()
-        self.check_for_loss()
+        if self.is_winner(self.computer):
+            self.reset_clicks()
+        self.turn = "player"
 
     def draw_all_letters(self):
         for i in range(9):
