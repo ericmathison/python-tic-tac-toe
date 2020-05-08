@@ -210,8 +210,10 @@ class Game:
 
     def set_players_choice(self):
         position = self.get_position_from_click()
-        if isinstance(position, int):
+        if isinstance(position, int) and self.state[position - 1] == "-":
             self.playchoice = position
+        else:
+            self.turn = "player"
 
 game = Game()
 game.run()
