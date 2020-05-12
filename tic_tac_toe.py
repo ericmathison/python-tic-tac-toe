@@ -203,13 +203,10 @@ class Game:
         titlefont = pygame.font.Font(None, 56)
         title = titlefont.render("Choose your symbol...", True, BLACK)
         self.screen.blit(title, [235, 100])
-        #Choice X
         pygame.draw.rect(self.screen, BLACK, [175, 275, 150, 150], 2)
-        pygame.draw.line(self.screen, BLACK, [200, 300], [300, 400], 5)
-        pygame.draw.line(self.screen, BLACK, [300, 300], [200, 400], 5)
-        #Choice O
+        self.draw_letter("X", 200, 300)
         pygame.draw.rect(self.screen, BLACK, [575, 275, 150, 150], 2)
-        pygame.draw.ellipse(self.screen, RED, [600, 300, 100, 100], 4)
+        self.draw_letter("O", 600, 300)
 
     def get_position_from_click(self):
         coordinates = [[x, y] for y in [50, 250, 450] for x in [150, 350, 550]]
