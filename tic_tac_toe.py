@@ -135,6 +135,16 @@ class Game:
                     self.turn = "player"
                     return
 
+    def attempt_computer_win(self):
+        for n in range(0, 9):
+            state = self.state[:n] + self.computer + self.state[n + 1:]
+            for first, second, third in self.possible_wins:
+                if (state[first - 1] == state[second - 1] == state[third - 1]
+                        == self.computer and self.state[n] == "-"):
+                    self.move(n + 1, self.computer)
+                    self.turn = "player"
+                    return
+
     def make_random_computer_move(self):
         if self.turn == "comp":
             rand_list = random.sample(list(range(0, 9)), 9)
@@ -148,6 +158,7 @@ class Game:
         self.state = self.state[:position - 1] + piece + self.state[position:]
 
     def computers_turn(self):
+        self.attempt_computer_win()
         self.try_preventing_win()
         self.make_random_computer_move()
         if self.is_winner(self.computer):
