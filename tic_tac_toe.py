@@ -42,9 +42,6 @@ class Game:
             self.display_letter_choice_menu()
             self.select_symbol()
 
-        if self.window in ["main", "win", "lose", "cats"]:
-            self.process_menu()
-
         if self.window == "game":
             self.set_players_choice()
             gamefont = pygame.font.Font(None, 48)
@@ -59,12 +56,8 @@ class Game:
 
             self.draw_all_letters()
 
-            if self.status() == "lost":
-                self.window = "lose"
-            if self.status() == "won":
-                self.window = "win"
-            if self.status() == "cats":
-                self.window = "cats"
+            if self.status() in ["won", "lost", "cats"]:
+                self.window = "over"
 
         if self.playchoice != '':
             self.move(self.playchoice, self.player)
@@ -74,15 +67,13 @@ class Game:
 
         if self.window == "main":
             self.display_menu("Welcome to Daniel's Tic Tac Toe", "New Game", BLACK)
+            self.process_menu()
 
-        if self.window == "win":
-            self.display_menu("You Won!", "Play Again", BLUE)
-
-        if self.window == "lose":
-            self.display_menu("You lost...", "Play Again", RED)
-
-        if self.window == "cats":
-            self.display_menu("Cat's Game!", "Play Again", GREEN)
+        if self.window == "over":
+            mesages = {"won": "You Won!", "lost": "You lost...", "cats": "Cat's Game!"}
+            colors = {"won": BLUE, "lost": RED, "cats": GREEN}
+            self.display_menu(mesages[self.status()], "Play Again", colors[self.status()])
+            self.process_menu()
 
         pygame.display.flip()
 
