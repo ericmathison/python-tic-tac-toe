@@ -44,7 +44,7 @@ class Game:
 
     def __init__(self):
         self.board = Board()
-        self.reset_clicks()
+        self.initialize_clicks()
         self.window = "main"
         self.player = "X"
         self.computer = "O"
@@ -115,12 +115,12 @@ class Game:
             self.player = "X"
             self.computer =  "O"
             self.window = "game"
-            self.reset_clicks()
+            self.initialize_clicks()
         if 600 <= self.clickx <= 700 and 300 <= self.clicky <= 400:
             self.player = "O"
             self.computer = "X"
             self.window = "game"
-            self.reset_clicks()
+            self.initialize_clicks()
 
     def try_preventing_win(self):
         preventable_wins = [
@@ -159,7 +159,7 @@ class Game:
         self.try_preventing_win()
         self.make_random_computer_move()
         if self.board.is_winner(self.computer):
-            self.reset_clicks()
+            self.initialize_clicks()
         self.board.turn = "player"
 
     def draw_all_letters(self):
@@ -173,14 +173,14 @@ class Game:
         elif letter == "O":
             pygame.draw.ellipse(self.screen, RED, [top_left_x, top_left_y, 100, 100], 4)
 
-    def reset_clicks(self):
+    def initialize_clicks(self):
         self.clickx = 0
         self.clicky = 0
 
     def process_menu(self):
         if 250 <= self.clickx <= 650 and 250 <= self.clicky <= 350:
             self.board = Board()
-            self.reset_clicks()
+            self.initialize_clicks()
             self.window = "choice"
         if 250 <= self.clickx <= 650 and 400 <= self.clicky <= 500:
             exit()
