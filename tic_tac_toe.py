@@ -80,9 +80,9 @@ class Game:
             turn_text = gamefont.render("It's your turn...", True, BLACK)
             self.screen.blit(turn_text, [350, 655])
 
-            for x, y in [[[150, 250], [750, 250]], [[150, 450], [750, 450]],
-                          [[350, 50],  [350, 650]], [[550, 50],  [550, 650]]]:
-                pygame.draw.line(self.screen, BLACK, x, y, 5)
+            for start, end in [[[150, 250], [750, 250]], [[150, 450], [750, 450]],
+                          [[350, 50], [350, 650]], [[550, 50], [550, 650]]]:
+                pygame.draw.line(self.screen, BLACK, start, end, 5)
 
             self.draw_all_letters()
 
