@@ -122,7 +122,7 @@ class Game:
             self.window = "game"
             self.initialize_clicks()
 
-    def try_preventing_win(self):
+    def get_win_preventing_move(self):
         preventable_wins = [
             [2, 3, 1], [5, 6, 4], [8, 9, 7], [1, 3, 2], [4, 6, 5], [7, 9, 8],
             [1, 2, 3], [4, 5, 6], [7, 8, 9], [7, 4, 1], [8, 5, 2], [9, 6, 3],
@@ -131,9 +131,8 @@ class Game:
 
         for first, second, third in preventable_wins:
             if (self.board.state[first - 1] == self.board.state[second - 1] == self.player and self.board.state[third - 1] == "-"):
-                    self.board.move(third, self.computer)
-                    self.board.turn = "player"
-                    return
+                return third
+        return None
 
     def attempt_computer_win(self):
         for n in range(0, 9):
@@ -156,7 +155,9 @@ class Game:
 
     def computers_turn(self):
         self.attempt_computer_win()
-        self.try_preventing_win()
+        if self.get_win_preventing_move() != None:
+            self.board.move(self.get_win_preventing_move(), self.computer)
+            self.board.turn = "player"
         self.make_random_computer_move()
         if self.board.is_winner(self.computer):
             self.initialize_clicks()
