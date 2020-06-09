@@ -134,15 +134,14 @@ class Game:
                 return third
         return None
 
-    def attempt_computer_win(self):
+    def get_computers_winning_move(self):
         for n in range(0, 9):
             state = self.board.state[:n] + self.computer + self.board.state[n + 1:]
             for first, second, third in Board.possible_wins:
                 if (state[first - 1] == state[second - 1] == state[third - 1]
                         == self.computer and self.board.state[n] == "-"):
-                    self.board.move(n + 1, self.computer)
-                    self.board.turn = "player"
-                    return
+                    return n + 1
+        return None
 
     def get_random_computer_move(self):
         if self.board.turn == "comp":
@@ -152,7 +151,10 @@ class Game:
                     return n + 1
 
     def computers_turn(self):
-        self.attempt_computer_win()
+        if self.get_computers_winning_move() != None:
+            self.board.move(self.get_computers_winning_move(), self.computer)
+            self.board.turn = "player"
+            return
         if self.get_win_preventing_move() != None:
             self.board.move(self.get_win_preventing_move(), self.computer)
             self.board.turn = "player"
