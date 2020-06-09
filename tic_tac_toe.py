@@ -144,11 +144,10 @@ class Game:
         return None
 
     def get_random_computer_move(self):
-        if self.board.turn == "comp":
-            rand_list = random.sample(list(range(0, 9)), 9)
-            for n in rand_list:
-                if self.board.state[n] == "-":
-                    return n + 1
+        rand_list = random.sample(list(range(0, 9)), 9)
+        for n in rand_list:
+            if self.board.state[n] == "-":
+                return n + 1
 
     def computers_turn(self):
         if self.get_computers_winning_move() != None:
@@ -158,6 +157,7 @@ class Game:
         if self.get_win_preventing_move() != None:
             self.board.move(self.get_win_preventing_move(), self.computer)
             self.board.turn = "player"
+            return
         rand_comp_move = self.get_random_computer_move()
         if rand_comp_move != None:
             self.board.move(rand_comp_move, self.computer)
