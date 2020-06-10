@@ -89,7 +89,7 @@ class Game:
             if self.board.status(self.player) in ["won", "lost", "cats"]:
                 self.window = "over"
 
-        if self.board.playchoice != '':
+        if self.board.playchoice:
             self.board.move(self.board.playchoice, self.player)
 
         if self.board.turn == "comp":
