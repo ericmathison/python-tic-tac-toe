@@ -128,11 +128,9 @@ class Game:
             [1, 2, 3], [4, 5, 6], [7, 8, 9], [7, 4, 1], [8, 5, 2], [9, 6, 3],
             [1, 9, 5], [2, 8, 5], [3, 9, 6], [1, 4, 7], [2, 5, 8], [3, 6, 9],
             [3, 7, 5], [1, 5, 9], [7, 5, 3], [3, 5, 7], [9, 5, 1], [1, 7, 4]]
-
         for first, second, third in preventable_wins:
             if (self.board.state[first - 1] == self.board.state[second - 1] == self.player and self.board.state[third - 1] == "-"):
                 return third
-        return None
 
     def get_computers_winning_move(self):
         for n in range(0, 9):
@@ -141,7 +139,6 @@ class Game:
                 if (state[first - 1] == state[second - 1] == state[third - 1]
                         == self.computer and self.board.state[n] == "-"):
                     return n + 1
-        return None
 
     def get_random_computer_move(self):
         rand_list = random.sample(list(range(0, 9)), 9)
