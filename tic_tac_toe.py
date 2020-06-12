@@ -92,7 +92,7 @@ class Game:
         if self.board.playchoice:
             self.board.move(self.board.playchoice, self.player)
 
-        if self.board.turn == "comp":
+        if self.board.turn == "comp" and not self.board.is_game_over():
             self.computers_turn()
 
         if self.window == "main":
@@ -146,21 +146,15 @@ class Game:
             if self.board.state[n] == "-":
                 return n + 1
 
-    def computers_turn(self):
+    def get_best_computer_move(self):
         if self.get_computers_winning_move() is not None:
-            self.board.move(self.get_computers_winning_move(), self.computer)
-            self.board.turn = "player"
-            return
+            return self.get_computers_winning_move()
         if self.get_win_preventing_move() is not None:
-            self.board.move(self.get_win_preventing_move(), self.computer)
-            self.board.turn = "player"
-            return
-        rand_comp_move = self.get_random_computer_move()
-        if rand_comp_move is not None:
-            self.board.move(rand_comp_move, self.computer)
-            self.board.turn = "player"
-        if self.board.is_winner(self.computer):
-            self.initialize_clicks()
+            return self.get_win_preventing_move()
+        return self.get_random_computer_move()
+
+    def computers_turn(self):
+        self.board.move(self.get_best_computer_move(), self.computer)
         self.board.turn = "player"
 
     def draw_all_letters(self):
