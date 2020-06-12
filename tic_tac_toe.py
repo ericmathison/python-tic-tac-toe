@@ -147,16 +147,16 @@ class Game:
                 return n + 1
 
     def computers_turn(self):
-        if self.get_computers_winning_move() != None:
+        if self.get_computers_winning_move() is not None:
             self.board.move(self.get_computers_winning_move(), self.computer)
             self.board.turn = "player"
             return
-        if self.get_win_preventing_move() != None:
+        if self.get_win_preventing_move() is not None:
             self.board.move(self.get_win_preventing_move(), self.computer)
             self.board.turn = "player"
             return
         rand_comp_move = self.get_random_computer_move()
-        if rand_comp_move != None:
+        if rand_comp_move is not None:
             self.board.move(rand_comp_move, self.computer)
             self.board.turn = "player"
         if self.board.is_winner(self.computer):
