@@ -70,7 +70,7 @@ class Game:
 
         if self.window == "choice":
             self.display_letter_choice_menu()
-            self.select_symbol()
+            self.associate_click_with_symbol()
 
         if self.window == "game":
             self.set_players_choice()
@@ -110,17 +110,17 @@ class Game:
 
         self.clock.tick(30)
 
-    def select_symbol(self):
+    def associate_click_with_symbol(self):
         if 200 <= self.clickx <= 300 and 300 <= self.clicky <= 400:
-            self.player = "X"
-            self.computer =  "O"
-            self.window = "game"
-            self.initialize_clicks()
+            self.set_chosen_symbol("X")
         if 600 <= self.clickx <= 700 and 300 <= self.clicky <= 400:
-            self.player = "O"
-            self.computer = "X"
-            self.window = "game"
-            self.initialize_clicks()
+            self.set_chosen_symbol("O")
+
+    def set_chosen_symbol(self, symbol):
+        self.player = symbol
+        self.computer = "X" if self.player == "O" else "O"
+        self.window = "game"
+        self.initialize_clicks()
 
     def get_win_preventing_move(self):
         preventable_wins = [
